@@ -1,0 +1,5 @@
+<% @books.each do |book| %>
+  <div class="book_tile">
+    <%= link_to book.title, book_path(book.id) %>
+  </div>
+<% end %>

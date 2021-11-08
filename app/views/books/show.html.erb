@@ -1,0 +1,8 @@
+<h1><%= @book.title %></h1>
+
+<h2><%= @book.authors.map{ |a| a.name }.join(", ")%></h2>
+
+<h4>Description: </h4>
+<%= @book.description %>
+
+

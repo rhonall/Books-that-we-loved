@@ -1,0 +1,7 @@
+<h1>Which book are you searching?</h1>
+
+<ul>
+  <% @books.each do |book| %>
+    <li><%= link_to book.title, new_book_path + "?title=#{book.title}&authors=#{book.authors_array.map { |a| a }.join(", ")}&book_api_id=#{book.id}&cover=#{book.image_link}&description=#{book.description}" %></li>
+  <% end %>
+</ul>
