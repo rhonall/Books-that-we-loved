@@ -1,0 +1,21 @@
+<nav>
+  <div class="nav-logo">Books that we loved</div>
+  <div class="nav-search-bar">
+    <%= form_with url: '/find', method: :get do |f| %>
+      <%= f.label :search_for %>
+      <%= f.text_field :query %>
+      <%= f.label :search_by %>
+      <%= f.select :type, ['author', 'title'] %>
+      <%= f.submit :search %>
+    <% end %>
+  </div>
+  <div class="nav-bar">
+    <ul>
+      <li><%= link_to "BOOKS", books_path %></li>
+      <li><%= link_to "AUTHORS", authors_path %></li>
+      <li><%= link_to "GENRES", genres_path %></li>
+      <li>|</li>
+      <li><%= link_to "ADD NEW BOOK", search_path %></li>
+    </ul>
+  </div>
+</nav>

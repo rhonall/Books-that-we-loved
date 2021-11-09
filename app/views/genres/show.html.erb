@@ -1,0 +1,7 @@
+<h1><%= @genre.name.capitalize %></h1>
+
+<ul>
+  <% @genre.books.each do |book| %>
+    <li><%= link_to book.title, book_path(book.id) %></li>
+  <% end %>
+</ul>

@@ -1,11 +1,11 @@
 <h1><%= @book.title %></h1>
 
-<h2><%= @book.authors.map{ |a| a.name }.join(", ")%></h2>
+<h2><%= safe_join(@book.authors.map{ |a| link_to(a.name, author_path(a.id)) }, ", ".html_safe) %></h2>
 
 <img src="<%= @book.cover %>" alt="Book cover">
 
 <h3>Genres: </h3>
-<%= @book.genres.map{ |g| g.name.capitalize }.join(", ")%>
+<%= safe_join(@book.genres.map{ |g| link_to(g.name.capitalize, genre_path(g.id)) }, ", ".html_safe) %>
 
 <h3>Description: </h3>
 <%= @book.description %>

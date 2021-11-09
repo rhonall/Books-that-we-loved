@@ -1,13 +1,13 @@
 class BooksController < ApplicationController
   before_action :get_params, only: [:new]
   before_action :get_genres, only: [:new, :create]
+  before_action :get_book, only: [:show]
 
   def index
     @books = Book.select(:title, :id)
   end
 
   def show
-    @book = Book.find(params[:id])
   end
 
   def new
@@ -31,6 +31,17 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def find
+    case params[:type]
+    when 'author'
+      @authors = Author.where("LOWER(name) LIKE LOWER(?)", "%#{params[:query]}%")
+      render "authors/index"
+    when 'title'
+      @books = Book.where("LOWER(title) LIKE LOWER(?)", "%#{params[:query]}%")
+      render 'index'
+    end
+  end
+
   def search; end
 
   def search_results
@@ -41,8 +52,8 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :description, :book_api_id, :cover, genre_ids: [])
   end
 
-  def get_authors
-    @authors = Author.select(:name)
+  def get_genres
+    @genres = Genre.all
   end
 
   def get_params
@@ -53,7 +64,7 @@ class BooksController < ApplicationController
     @cover = params[:cover]
   end
 
-  def get_genres
-    @genres = Genre.all
+  def get_book
+    @book = Book.find(params[:id])
   end
 end

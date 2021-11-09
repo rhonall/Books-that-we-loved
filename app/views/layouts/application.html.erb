@@ -11,18 +11,7 @@
   </head>
 
   <body>
-    <nav>
-      <div class="nav-logo">Books that we loved</div>
-      <div class="nav-bar">
-        <ul>
-          <li><%= link_to "HOME", '/' %></li>
-          <li><%= link_to "BOOKS", books_path %></li>
-          <li>AUTHORS</li>
-          <li>|</li>
-          <li><%= link_to "ADD NEW BOOK", search_path %></li>
-        </ul>
-      </div>
-    </nav>
+    <%= render 'shared/navbar' %>
     <%= yield %>
   </body>
 </html>
