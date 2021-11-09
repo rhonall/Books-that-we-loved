@@ -3,7 +3,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
     create_table :books do |t|
       t.string :title
       t.text :description
-      t.integer :isbn
+      t.string :book_api_id
 
       t.timestamps
     end
