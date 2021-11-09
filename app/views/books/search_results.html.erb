@@ -1,7 +1,14 @@
 <h1>Which book are you searching?</h1>
 
-<ul>
-  <% @books.each do |book| %>
-    <li><%= link_to book.title, new_book_path + "?title=#{book.title}&authors=#{book.authors_array.map { |a| a }.join(", ")}&book_api_id=#{book.id}&cover=#{book.image_link}&description=#{book.description}" %></li>
-  <% end %>
-</ul>
+<div class="results_wrapper">
+    <% @books.each do |book| %>
+    <div class="searched_book_wrapper">
+      <% if book.image_link.nil? %>
+        <%= image_tag("book_cover.png") %>
+        <% else %>
+        <img src="<%= book.image_link %>" alt="Book cover of <%= "#{book.title}" %>">
+        <% end %>
+      <%= link_to book.title, new_book_path + "?title=#{book.title}&authors=#{book.authors_array.map { |a| a }.join(", ")}&book_api_id=#{book.id}&cover=#{ERB::Util.url_encode(book.image_link)}&description=#{book.description}" %>
+    </div>
+    <% end %>
+</div>

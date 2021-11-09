@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     if Book.find_by(title: params[:book][:title]).nil?
       @book = Book.new(book_params)
       @authors_array = params[:book][:authors].split(', ')
-      for author in @authors_array
+      @authors_array.each do |author|
         if Author.find_by(name: author).nil?
           Author.create(name: author)
           @book.authors << Author.find_by(name: author)

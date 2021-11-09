@@ -2,6 +2,8 @@
 
 <h2><%= @book.authors.map{ |a| a.name }.join(", ")%></h2>
 
+<img src="<%= @book.cover %>" alt="Book cover">
+
 <h4>Description: </h4>
 <%= @book.description %>
 
