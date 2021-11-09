@@ -17,7 +17,10 @@
     <%= f.label :cover %>
     <%= f.text_area :cover, value: @cover %>
   </div>
-
+  <div>
+    <%= f.label :genres %>
+    <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
+  </div>
 
   <div>
     <%= f.submit %>

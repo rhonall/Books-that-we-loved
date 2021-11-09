@@ -4,7 +4,10 @@
 
 <img src="<%= @book.cover %>" alt="Book cover">
 
-<h4>Description: </h4>
+<h3>Genres: </h3>
+<%= @book.genres.map{ |g| g.name.capitalize }.join(", ")%>
+
+<h3>Description: </h3>
 <%= @book.description %>
 
 

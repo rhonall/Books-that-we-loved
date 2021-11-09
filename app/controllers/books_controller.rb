@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :get_params, only: [:new]
+  before_action :get_genres, only: [:new, :create]
 
   def index
     @books = Book.select(:title, :id)
@@ -14,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    if Book.find_by(title: params[:book][:title]).nil?
+    if Book.find_by(book_api_id: params[:book][:book_api_id]).nil?
       @book = Book.new(book_params)
       @authors_array = params[:book][:authors].split(', ')
       @authors_array.each do |author|
@@ -26,19 +27,18 @@ class BooksController < ApplicationController
         end
       end
       @book.save!
-    end 
+    end
     redirect_to books_path
   end
 
-  def search
-  end
-  
+  def search; end
+
   def search_results
     @books = GoogleBooks.search("intitle:#{params[:search]}")
   end
 
   def book_params
-    params.require(:book).permit(:title, :description, :book_api_id, :cover)
+    params.require(:book).permit(:title, :description, :book_api_id, :cover, genre_ids: [])
   end
 
   def get_authors
@@ -51,5 +51,9 @@ class BooksController < ApplicationController
     @description = params[:description]
     @book_api_id = params[:book_api_id]
     @cover = params[:cover]
+  end
+
+  def get_genres
+    @genres = Genre.all
   end
 end

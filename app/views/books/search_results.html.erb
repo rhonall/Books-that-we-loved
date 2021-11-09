@@ -5,10 +5,12 @@
     <div class="searched_book_wrapper">
       <% if book.image_link.nil? %>
         <%= image_tag("book_cover.png") %>
-        <% else %>
+      <% else %>
         <img src="<%= book.image_link %>" alt="Book cover of <%= "#{book.title}" %>">
-        <% end %>
+      <% end %>
       <%= link_to book.title, new_book_path + "?title=#{book.title}&authors=#{book.authors_array.map { |a| a }.join(", ")}&book_api_id=#{book.id}&cover=#{ERB::Util.url_encode(book.image_link)}&description=#{book.description}" %>
     </div>
     <% end %>
 </div>
+
+<p><%= link_to "<< Can't see your book here? Go back and search again. Tips: It will be easier to find your book with full title", :back %></p>
