@@ -2,7 +2,7 @@
 
 <div class="results_wrapper">
     <% @books.each do |book| %>
-    <div class="searched_book_wrapper">
+    <div class="found_book_wrapper">
       <% if book.image_link.nil? %>
         <%= image_tag("book_cover.png") %>
       <% else %>
