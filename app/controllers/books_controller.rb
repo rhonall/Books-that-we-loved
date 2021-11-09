@@ -31,7 +31,8 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  def find
+  # Search bar
+  def search
     case params[:type]
     when 'author'
       @authors = Author.where("LOWER(name) LIKE LOWER(?)", "%#{params[:query]}%")
@@ -41,11 +42,11 @@ class BooksController < ApplicationController
       render 'index'
     end
   end
+  # Progress to add new book
+  def find; end
 
-  def search; end
-
-  def search_results
-    @books = GoogleBooks.search("intitle:#{params[:search]}")
+  def found_results
+    @books = GoogleBooks.search("intitle:#{params[:find]}")
   end
 
   def book_params

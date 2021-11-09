@@ -1,6 +1,6 @@
 <h1>Add New Book</h1>
 
-<%= form_with url: "/search_results", method: :get do |f| %>
+<%= form_with url: "/found_results", method: :get do |f| %>
 <div class="search-bar">
   <%= f.label :search, "Book Title:" %>
   <%= f.text_field :search, placeholder: "Book Title" %>
