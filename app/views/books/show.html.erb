@@ -14,6 +14,11 @@
 <%= link_to "Click here", new_owned_book_path + "?title=#{@book.title}" %>
 
 <h3>List of owners: </h3>
-<%= %>
+<ul>
+  <% @book.owned_books.each do |owned_book| %>
+    <li><%= link_to owned_book.user.email, owned_book_path(owned_book.id) %></li>
+  <% end %>
+</ul>
+
 
 
