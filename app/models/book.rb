@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  resourcify
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
 

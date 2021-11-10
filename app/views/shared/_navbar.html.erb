@@ -16,6 +16,13 @@
       <li><%= link_to "GENRES", genres_path %></li>
       <li>|</li>
       <li><%= link_to "ADD NEW BOOK", find_path %></li>
+      <li>|</li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Login", new_user_session_path %></li>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+      <% end %>
     </ul>
   </div>
 </nav>

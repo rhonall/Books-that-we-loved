@@ -21,10 +21,8 @@ class BooksController < ApplicationController
       @authors_array.each do |author|
         if Author.find_by(name: author).nil?
           Author.create(name: author)
-          @book.authors << Author.find_by(name: author)
-        else
-          @book.authors << Author.find_by(name: author)
         end
+        @book.authors << Author.find_by(name: author)
       end
       @book.save!
     end
