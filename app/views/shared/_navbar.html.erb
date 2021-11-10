@@ -18,6 +18,7 @@
       <li><%= link_to "ADD NEW BOOK", find_path %></li>
       <li>|</li>
       <% if user_signed_in? %>
+        <li><%= link_to "Check out my books", owned_books_path %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path %></li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_031424) do
+ActiveRecord::Schema.define(version: 2021_11_10_050530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 2021_11_10_031424) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "owned_books", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "condition"
+    t.integer "format"
+    t.index ["book_id"], name: "index_owned_books_on_book_id"
+    t.index ["user_id"], name: "index_owned_books_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -88,4 +99,6 @@ ActiveRecord::Schema.define(version: 2021_11_10_031424) do
   add_foreign_key "author_books", "books"
   add_foreign_key "book_genres", "books"
   add_foreign_key "book_genres", "genres"
+  add_foreign_key "owned_books", "books"
+  add_foreign_key "owned_books", "users"
 end

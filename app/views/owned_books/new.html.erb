@@ -1,0 +1,21 @@
+<h1>Add your book for swap</h1>
+
+<%= form_with url:'/owned_books', method: :post do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, value: @title %>
+  </div>
+  <div>
+    <%= f.label :condition %>
+    <%= f.select :condition, OwnedBook.conditions.keys %>
+  </div>
+  <div>
+    <%= f.label :format %>
+    <%= f.select :format, OwnedBook.formats.keys %>
+  </div>
+  
+  
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

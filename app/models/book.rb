@@ -5,4 +5,7 @@ class Book < ApplicationRecord
 
   has_many :book_genres, dependent: :destroy
   has_many :genres, through: :book_genres
+
+  has_many :owned_books
+  has_many :users, through: :owned_books, source: :user
 end

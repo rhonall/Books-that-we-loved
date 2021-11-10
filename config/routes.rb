@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :books
   resources :authors
   resources :genres
+  resources :owned_books
   get '/find', to: 'books#find'
   get '/found_results', to: 'books#found_results'
   get '/search', to: 'books#search'
