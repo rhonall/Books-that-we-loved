@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :get_book, only: [:show]
 
   def index
-    @books = Book.select(:title, :id)
+    @books = Book.select(:title, :id, :cover)
   end
 
   def show
@@ -26,7 +26,8 @@ class BooksController < ApplicationController
       end
       @book.save!
     end
-    redirect_to books_path
+    redirect_to new_owned_book_path(title: "#{@book.title}")
+    flash[:notice] = "Book is added to library, please continue to add your book for swap"
   end
 
   # Search bar

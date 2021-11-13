@@ -16,6 +16,7 @@ class OwnedBooksController < ApplicationController
   end
   
   def create
+    render json: params
   end
 
   def get_params_title

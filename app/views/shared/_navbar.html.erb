@@ -1,26 +1,12 @@
 <nav>
   <div class="nav-logo">Books that we loved</div>
-  <div class="nav-search-bar">
-    <%= form_with url: '/search', method: :get do |f| %>
-      <%= f.label :search_for %>
-      <%= f.text_field :query %>
-      <%= f.label :search_by %>
-      <%= f.select :type, ['author', 'title'] %>
-      <%= f.submit :search %>
-    <% end %>
-  </div>
   <div class="nav-bar">
     <ul>
-      <li><%= link_to "BOOKS", books_path %></li>
-      <li><%= link_to "AUTHORS", authors_path %></li>
-      <li><%= link_to "GENRES", genres_path %></li>
-      <li>|</li>
-      <li><%= link_to "ADD NEW BOOK", find_path %></li>
-      <li>|</li>
       <% if user_signed_in? %>
-        <li><%= link_to "Check out my books", owned_books_path %></li>
-        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         <li><%= current_user.email %></li>
+        <li><%= link_to "Add New Book", find_path %></li>
+        <li><%= link_to "Account", owned_books_path %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path %></li>
         <li><%= link_to "Sign up", new_user_registration_path %></li>

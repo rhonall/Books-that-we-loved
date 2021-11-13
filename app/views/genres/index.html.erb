@@ -1,7 +1,7 @@
-<h1>Genres List</h1>
 
-<ul>
+<div class="page-wrapper">
   <% @genres.each do |genre| %>
-    <li><%= link_to genre.name.capitalize, genre_path(genre.id) %></li>
+    <div class="genre-wrapper"><%= link_to genre.name.capitalize, genre_path(genre.id) %></div>
   <% end %>
-</ul>
+</div>
+

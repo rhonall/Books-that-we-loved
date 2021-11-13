@@ -1,7 +1,5 @@
-<h1>Authors List</h1>
-
-<ul>
+<div class="page-wrapper">
   <% @authors.each do |author| %>
-  <li><%= link_to author.name, author_path(author) %></li>
-<% end %>
-</ul>
+    <div class="author-wrapper"><%= link_to author.name, author_path(author) %></div>
+  <% end %>
+</div>

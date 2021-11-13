@@ -1,6 +1,8 @@
-<h1>Books List</h1>
-<% @books.each do |book| %>
-  <div class="book_tile">
-    <%= link_to book.title, book_path(book.id) %>
-  </div>
-<% end %>
+<div class="page-wrapper">
+  <% @books.each do |book| %>
+    <div class="book-wrapper">
+      <img src="<%= book.cover %>" alt="Book cover of <%= "#{book.title}" %>">
+      <%= link_to book.title, book_path(book.id) %>
+    </div>
+  <% end %>
+</div>
