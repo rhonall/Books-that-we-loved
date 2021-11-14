@@ -6,6 +6,7 @@ class OwnedBooksController < ApplicationController
 
   def index
     @books = current_user.owned_books
+    @requests = Request.select(:id)
   end
 
   def show
@@ -16,7 +17,12 @@ class OwnedBooksController < ApplicationController
   end
   
   def create
-    render json: params
+    book_id = Book.find_by(title: params[:owned_book][:title]).id
+    @new_owned_book = current_user.owned_books.new(book_params)
+    @new_owned_book.update(book_id: book_id)
+    @new_owned_book.save
+    redirect_to owned_book_path(@new_owned_book)
+    flash[:notice] = "Book is added successfully!"
   end
 
   def get_params_title
@@ -28,5 +34,6 @@ class OwnedBooksController < ApplicationController
   end
 
   def book_params
+    params.require(:owned_book).permit(:condition, :format, :owner_note, :image)
   end
 end

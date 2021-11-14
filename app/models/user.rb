@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_many :owned_books
   has_many :books, through: :owned_books, source: :book
 
+  has_many :requests_made, class_name: "Request", foreign_key: :requester_id
+  has_many :requests_of, class_name: "Request", foreign_key: :requestee_id
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

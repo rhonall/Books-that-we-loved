@@ -1,7 +1,10 @@
-<h1><%= @genre.name.capitalize %></h1>
+<h1 class="title"><%= @genre.name.capitalize %> Books</h1>
 
-<ul>
+<div class="page-wrapper">
   <% @genre.books.each do |book| %>
-    <li><%= link_to book.title, book_path(book.id) %></li>
+    <div class="book-wrapper">
+      <img src="<%= book.cover %>" alt="Book cover of <%= "#{book.title}" %>">
+      <%= link_to book.title, book_path(book.id) %>
+    </div>
   <% end %>
-</ul>
+</div>

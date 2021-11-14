@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_050530) do
+ActiveRecord::Schema.define(version: 2021_11_14_053316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "author_books", force: :cascade do |t|
     t.bigint "author_id", null: false
@@ -61,8 +89,22 @@ ActiveRecord::Schema.define(version: 2021_11_10_050530) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "condition"
     t.integer "format"
+    t.text "owner_note"
     t.index ["book_id"], name: "index_owned_books_on_book_id"
     t.index ["user_id"], name: "index_owned_books_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "requester_id", null: false
+    t.bigint "requestee_id", null: false
+    t.bigint "requester_book_id", null: false
+    t.bigint "requestee_book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["requestee_book_id"], name: "index_requests_on_requestee_book_id"
+    t.index ["requestee_id"], name: "index_requests_on_requestee_id"
+    t.index ["requester_book_id"], name: "index_requests_on_requester_book_id"
+    t.index ["requester_id"], name: "index_requests_on_requester_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -95,10 +137,16 @@ ActiveRecord::Schema.define(version: 2021_11_10_050530) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "author_books", "authors"
   add_foreign_key "author_books", "books"
   add_foreign_key "book_genres", "books"
   add_foreign_key "book_genres", "genres"
   add_foreign_key "owned_books", "books"
   add_foreign_key "owned_books", "users"
+  add_foreign_key "requests", "owned_books", column: "requestee_book_id"
+  add_foreign_key "requests", "owned_books", column: "requester_book_id"
+  add_foreign_key "requests", "users", column: "requestee_id"
+  add_foreign_key "requests", "users", column: "requester_id"
 end

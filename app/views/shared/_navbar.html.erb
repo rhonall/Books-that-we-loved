@@ -1,5 +1,5 @@
 <nav>
-  <div class="nav-logo">Books that we loved</div>
+  <div><%= link_to "Books that we loved", books_path, class: "nav-logo" %></div>
   <div class="nav-bar">
     <ul>
       <% if user_signed_in? %>

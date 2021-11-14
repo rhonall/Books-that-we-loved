@@ -1,0 +1,15 @@
+<h1>Request Form</h1>
+
+<h3>You are requesting for: <%= @book.book.title %></h3>
+<h3>Owned by <%= @book.user.email %></h3>
+<p>- - - -</p>
+<h3>Book that you want to use to exchange:</h3>
+<%= form_with model: @request do |f| %>
+  <%= f.label :requester_book_id %>
+  <%= f.collection_select :requester_book_id, @owned_books, :id, @test.to_sym %>
+  <%= f.submit %>
+<% end %>
+
+
+
+

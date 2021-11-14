@@ -4,7 +4,7 @@
 
 // ROOT
 :root {
-  --clr-primary: white;
+  --clr-primary: rgb(1, 73, 37);
 }
 
 
@@ -50,9 +50,10 @@ nav {
   background-color: rgb(245, 245, 245);
   padding: 1rem;
   .nav-logo {
-    font-size: 1.2rem;
-    font-family: 'Yuji Syuku', serif;
+    font-size: 1.8rem;
+    font-family: 'Cookie', cursive;
     font-style: italic;
+    color: var(--clr-primary);
   }
   .nav-bar ul {
     display: flex;
@@ -90,11 +91,14 @@ nav {
   margin-left: -40%;
 }
 
+// Wrapper share among books, authors, genres' index page
 .page-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 5px;
-  grid-row-gap: 20px;
+  grid-row-gap: 30px;
+  justify-items: center;
+  align-items: center;
   .book-wrapper {
     display: flex;
     flex-direction: column;
@@ -102,6 +106,54 @@ nav {
     text-align: center;
   }
 }
+
+// Book Show Page
+.show-book-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  .show-book-wrapper-left {
+    flex: 68%;
+    .show-book-wrapper-left-top {
+      display: flex;
+      margin-bottom: 1rem;
+      .book-title-authors {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1rem;
+        .authors {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+    .book-subtitle {
+      margin: 1rem 0 0.5rem; 
+    }
+  }
+  .show-book-wrapper-right {
+    flex: 30%;
+    border: 1px solid red;
+    .top {
+      margin-bottom: 2rem;
+    }
+    .bottom {
+      .list {
+        list-style: disc;
+        margin-left: 20px;
+      }
+    }
+
+    }
+  }
+
+
+
+
+
+
+
+
 
 .author-wrapper {
   text-align: center;
@@ -111,7 +163,9 @@ nav {
   text-align: center;
 }
 
-
+.title {
+  margin-bottom: 1rem;
+}
 
 
 

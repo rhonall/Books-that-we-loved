@@ -1,6 +1,6 @@
 <h1>Add your book for swap</h1>
 
-<%= form_with url:'/owned_books', method: :post do |f| %>
+<%= form_with model: @owned_book do |f| %>
   <div>
     <%= f.label :title %>
     <%= f.text_field :title, value: @title %>
@@ -13,8 +13,14 @@
     <%= f.label :format %>
     <%= f.select :format, OwnedBook.formats.keys %>
   </div>
-  
-  
+  <div>
+    <%= f.label :owner_note %>
+    <%= f.text_area :owner_note %>
+  </div>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image, folder: "books-that-we-loved/", accept: 'image/png, image/jpg, image/jpeg' %>
+  </div>
   <div>
     <%= f.submit %>
   </div>

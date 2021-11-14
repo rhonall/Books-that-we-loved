@@ -11,7 +11,13 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    book = Book.find_by(book_api_id: params[:book_api_id])
+    if !book.nil?
+      redirect_to book_path(book)
+      flash[:notice] = "Book is already in library."
+    else
+      @book = Book.new
+    end
   end
 
   def create
