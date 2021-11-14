@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_14_053316) do
+ActiveRecord::Schema.define(version: 2021_11_14_115218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2021_11_14_053316) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "cover"
+  end
+
+  create_table "fav_genres", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_fav_genres_on_genre_id"
+    t.index ["user_id"], name: "index_fav_genres_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -143,6 +152,8 @@ ActiveRecord::Schema.define(version: 2021_11_14_053316) do
   add_foreign_key "author_books", "books"
   add_foreign_key "book_genres", "books"
   add_foreign_key "book_genres", "genres"
+  add_foreign_key "fav_genres", "genres"
+  add_foreign_key "fav_genres", "users"
   add_foreign_key "owned_books", "books"
   add_foreign_key "owned_books", "users"
   add_foreign_key "requests", "owned_books", column: "requestee_book_id"
