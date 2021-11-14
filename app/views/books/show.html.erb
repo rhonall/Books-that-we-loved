@@ -24,7 +24,7 @@
       <h3>List of owners: </h3>
       <ul class="list">
         <% @book.owned_books.each do |owned_book| %>
-          <li><%= link_to owned_book.user.email, owned_book_path(owned_book.id) %></li>
+          <li><%= link_to owned_book.user.username, owned_book_path(owned_book.id) %></li>
         <% end %>
       </ul>
     </div>
