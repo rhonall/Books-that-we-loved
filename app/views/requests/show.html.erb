@@ -1,2 +1,9 @@
 <h1>Request No. <%= @request.id %></h1>
+<h3>Book you request for: 
+  <%= link_to @request.requestee_book.book.title, owned_book_path(@request.requestee_book.book.id)%>
+</h3>
+<h3>Book you offered: 
+  <%= link_to @request.requester_book.book.title, owned_book_path(@request.requester_book.book.id)%>
+</h3>
+<h3>Status: <%= @request.status.capitalize %></h3>
 

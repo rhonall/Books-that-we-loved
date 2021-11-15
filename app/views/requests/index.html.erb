@@ -1,0 +1,6 @@
+<ul>
+  <% @requests.each do |request| %>
+    <li><%= link_to request.id, request_path(request.id) %></li>
+  <% end %>
+
+</ul>

@@ -1,4 +1,5 @@
 <div class="top-bar">
+
   <div class="search-bar">
     <%= form_with url: '/search', method: :get do |f| %>
     <%= f.label :search_by %>
@@ -7,6 +8,7 @@
       <%= f.submit :search %>
     <% end %>
   </div>
+
   <div>
     <ul class="top-list">
       <li><%= link_to "BOOKS", books_path %></li>

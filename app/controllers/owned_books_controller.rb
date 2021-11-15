@@ -25,6 +25,8 @@ class OwnedBooksController < ApplicationController
     flash[:notice] = "Book is added successfully!"
   end
 
+  private 
+  
   def get_params_title
     @title = params[:title]
   end
