@@ -1,0 +1,17 @@
+<h1>Request Form</h1>
+
+<h3>You are requesting for: <%= @book.book.title %></h3>
+<h3>Owned by <%= @book.user.username %></h3>
+<p>- - - -</p>
+<h3>Book that you want to use to exchange:</h3>
+
+<%= form_with model: @request do |f| %>
+  <%= f.hidden_field :requester_id, value: current_user.id %>
+  <%= f.hidden_field :requestee_id, value: @book.user.id %>
+  <%= f.hidden_field :requestee_book_id, value: requestee_book_id %>
+  <% @owned_books.each do |b| %>
+    <%= f.radio_button :requester_book_id, b.book.id %>
+    <%= f.label :title, b.book.title %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

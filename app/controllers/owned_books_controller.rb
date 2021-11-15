@@ -1,7 +1,6 @@
 class OwnedBooksController < ApplicationController
   before_action :get_params_title, only: %i[new]
-  before_action :book_params, only: %i[create]
-  before_action :get_params, only: %i[show]
+  before_action :get_owned_book, only: %i[show edit update destroy]
 
 
   def index
@@ -25,14 +24,30 @@ class OwnedBooksController < ApplicationController
     flash[:notice] = "Book is added successfully!"
   end
 
+  def edit
+    @title = @owned_book.book.title
+  end
+
+  def update
+    @owned_book.update(book_params)
+    @owned_book.save
+    redirect_to owned_book_path(@owned_book.id)
+    flash[:notice] = "Book has updated successfully!"
+  end
+
+  def destroy
+    @owned_book.destroy
+    redirect_to book_path(@owned_book.book.id)
+  end
+
   private 
   
   def get_params_title
     @title = params[:title]
   end
 
-  def get_params
-    @book = OwnedBook.find(params[:id])
+  def get_owned_book
+    @owned_book = OwnedBook.find(params[:id])
   end
 
   def book_params

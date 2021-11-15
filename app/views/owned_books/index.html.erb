@@ -1,3 +1,4 @@
+<h1><%= link_to "Requests", requests_path%></h1>
 <h1>My books</h1>
 <ul>
   <% @books.each do |book| %>
@@ -6,9 +7,4 @@
 </ul>
 
 <ul>
-  <h1>My requests</h1>
-  <% @requests.each do |request| %>
-    <li><%= link_to request.id, request_path(request.id) %></li>
-  <% end %>
-</ul>
 

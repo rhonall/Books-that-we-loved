@@ -22,10 +22,14 @@
   
     <div class="bottom">
       <h3>List of owners: </h3>
+      <% if @book.owned_books.empty? %>
+      <p>None at the moment</p>
       <ul class="list">
+      <% else %>
         <% @book.owned_books.each do |owned_book| %>
-          <li><%= link_to owned_book.user.username, owned_book_path(owned_book.id) %></li>
+        <li><%= link_to owned_book.user.username, owned_book_path(owned_book.id) %></li>
         <% end %>
+      <% end %>
       </ul>
     </div>
   </div>
