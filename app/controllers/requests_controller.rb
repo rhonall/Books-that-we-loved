@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :get_request, only: [:show, :edit, :update, :destroy]
+  before_action :get_request, only: [:show, :edit, :update, :destroy, :action]
   before_action :get_requestee_book, only: [:new]
   before_action :get_current_user_owned_books, only: [:new, :edit]
   before_action :get_current_user_requests_made, only: [:index]
@@ -36,6 +36,14 @@ class RequestsController < ApplicationController
     @request.destroy
     redirect_to requests_path
     flash[:notice] = "Request has been deleted successfully!"
+  end
+
+  def action
+    if params[:state] == 'accept'
+      @request.update(status: 1)
+    else
+      @request.update(status: 2)
+    end
   end
 
   private

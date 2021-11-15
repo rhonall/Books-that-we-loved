@@ -10,5 +10,8 @@
 <% if @request.requester == current_user %>
   <button><%= link_to "Edit this request", edit_request_path(@request.id)%></button>
   <button><%= link_to "Cancel this request", request_path(@request.id), method: :delete %></button>
+<% else %>
+  <button><%= link_to "Accept request", action_request_path(@request.id) + "?state=accept" %></button>
+  <button><%= link_to "Deny request", action_request_path(@request.id) + "?state=deny" %></button>
 <% end %>
 
