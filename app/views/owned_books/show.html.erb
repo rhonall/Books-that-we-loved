@@ -4,7 +4,7 @@
   <% else %>
     <%= image_tag("no_image.png") %>
 <% end %>
-<h3>Owned by: <%= @owned_book.user.email %></h3>
+<h3>Owned by: <%= @owned_book.user.username %></h3>
 <h3>Condition: <%= @owned_book.condition %></h3>
 <h3>Format: <%= @owned_book.format %></h3>
 <h3>Owner Note: <%= @owned_book.owner_note %></h3>

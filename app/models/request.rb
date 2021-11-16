@@ -7,6 +7,6 @@ class Request < ApplicationRecord
   enum status: {
     pending: 0,
     cofirmed: 1,
-    denied: 2
+    declined: 2
   }, _prefix: true
 end

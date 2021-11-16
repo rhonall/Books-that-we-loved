@@ -24,7 +24,7 @@ class RequestsController < ApplicationController
       redirect_to owned_book_path(params[:request][:requestee_book_id])
       flash[:notice] = "Request has sent to #{@request.requestee.username} successfully!"
     end
-  
+    # render json: params
   end
 
   def edit
@@ -52,6 +52,8 @@ class RequestsController < ApplicationController
   end
 
   def accept
+    @request.requester_book.destroy
+    @request.requestee_book.destroy
   end
 
   def decline
@@ -82,5 +84,6 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:requestee_id, :requester_id, :requestee_book_id, :requester_book_id)
   end
+
 
 end
