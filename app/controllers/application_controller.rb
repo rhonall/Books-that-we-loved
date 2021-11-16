@@ -8,12 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    # if user.sign_in_count == 1
-    #   fav_genres_path
-    # else
-    #   books_path
-    # end
-    # puts resource.sign_in_count
     ((current_user.sign_in_count == 1) ? fav_genres_path : books_path )
   end
 end
