@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   resources :genres
   resources :owned_books
   resources :requests
+  resources :fav_genres
   get '/users', to: 'users#index'
-  get '/fav_genres', to: 'users#fav'
-  get '/add_fav_genres', to: 'users#add_fav_genres'
   get '/find', to: 'books#find'
   get '/found_results', to: 'books#found_results'
   get '/search', to: 'books#search'
   get '/request/:id', to: 'requests#action', as: 'action_request'
+  get '/request/:id/accept', to: 'requests#accept', as: 'accept_request'
+  get '/request/:id/decline', to: 'requests#decline', as: 'decline_request'
 end
 

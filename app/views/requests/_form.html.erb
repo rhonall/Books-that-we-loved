@@ -2,6 +2,12 @@
 
 <h3>You are requesting for: <%= @book.book.title %></h3>
 <h3>Owned by <%= @book.user.username %></h3>
+<h3><%= "#{@book.user.username}'s favourite genres: "%></h3>
+<ul>
+  <% @book.user.fav_genres.each do |genre| %>
+    <li><%= genre.genre.name.capitalize %></li>
+  <% end %>
+</ul>
 <p>- - - -</p>
 <h3>Book that you want to use to exchange:</h3>
 

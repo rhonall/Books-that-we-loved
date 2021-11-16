@@ -1,0 +1,4 @@
+<%= form_with url: "/fav_genres/#{current_user.id}", method: :patch do |f| %>
+  <%= f.collection_check_boxes :genres_id, @genres, :id, :name, { checked: @fav_genres.map { |g| g.genre.id}} %>
+  <%= f.submit %>
+<% end %>

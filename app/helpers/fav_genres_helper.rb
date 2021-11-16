@@ -1,0 +1,2 @@
+module FavGenresHelper
+end

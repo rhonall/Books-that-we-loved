@@ -10,6 +10,6 @@
 <h3>Owner Note: <%= @owned_book.owner_note %></h3>
 <%= link_to "I want this book!", new_request_path + "?requestee_book_id=#{@owned_book.id}" %>
 <% if @owned_book.user == current_user %>
-  <button><%= link_to "Edit this request", edit_owned_book_path(@owned_book.id)%></button>
-  <button><%= link_to "Cancel this request", owned_book_path(@owned_book.id), method: :delete %></button>
+  <button><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
+  <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete %></button>
 <% end %>
