@@ -1,4 +1,4 @@
-<%= form_with url: '/fav_genres',  method: :get do |f| %>
+<%= form_with url: '/add_fav_genres',  method: :get do |f| %>
   <%= f.collection_check_boxes :genres_id, @genres, :id, :name %>
   <%= f.submit %>
 <% end %>

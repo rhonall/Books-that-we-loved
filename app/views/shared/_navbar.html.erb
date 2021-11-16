@@ -5,7 +5,7 @@
       <% if user_signed_in? %>
         <li><%= current_user.username %></li>
         <li><%= link_to "Add New Book", find_path %></li>
-        <li><%= link_to "Account", owned_books_path %></li>
+        <li><%= link_to "Account", users_path %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path %></li>
