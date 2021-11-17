@@ -4,6 +4,7 @@ class RequestsController < ApplicationController
   before_action :get_current_user_owned_books, only: [:new, :edit]
   before_action :get_current_user_requests_made, only: [:index]
   before_action :get_current_user_requests_of, only: [:index]
+  before_action :get_all_requests_of_current_user, only: [:index]
 
   def index
   end
@@ -24,39 +25,35 @@ class RequestsController < ApplicationController
       redirect_to owned_book_path(params[:request][:requestee_book_id])
       flash[:notice] = "Request has sent to #{@request.requestee.username} successfully!"
     end
-    # render json: params
   end
 
   def edit
-    @book = @request.requester_book
+    @book = @request.requestee_book
   end
 
   def update
-    @request.update(request_params)
+    @request.update!(request_params)
     redirect_to request_path(@request.id)
     flash[:notice] = "Request has been updated successfully!"
   end
 
   def destroy
-    @request.destroy
+    @request.update(status: 3)
     redirect_to requests_path
     flash[:notice] = "Request has been deleted successfully!"
   end
 
   def action
-    if params[:state] == 'accept'
-      @request.update(status: 1)
-    else
-      @request.update(status: 2)
-    end
   end
 
   def accept
+    @request.update(status: 1)
     @request.requester_book.destroy
     @request.requestee_book.destroy
   end
 
   def decline
+    @request.update(status: 2)
   end
 
   private
@@ -83,6 +80,10 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:requestee_id, :requester_id, :requestee_book_id, :requester_book_id)
+  end
+
+  def get_all_requests_of_current_user
+    @all_requests = Request.where(requester_id: current_user.id).or(Request.where(requestee_id: current_user.id))
   end
 
 

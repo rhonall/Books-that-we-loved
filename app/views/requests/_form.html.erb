@@ -1,7 +1,9 @@
 <h1>Request Form</h1>
 
-<h3>You are requesting for: <%= @book.book.title %></h3>
-<h3>Owned by <%= @book.user.username %></h3>
+<h3>You are requesting for:</h3> 
+<%= @book.book.title %>
+<h3>Owned by</h3> 
+<%= @book.user.username %>
 <h3><%= "#{@book.user.username}'s favourite genres: "%></h3>
 <ul>
   <% @book.user.fav_genres.each do |genre| %>

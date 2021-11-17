@@ -8,8 +8,9 @@
 <h3>Condition: <%= @owned_book.condition %></h3>
 <h3>Format: <%= @owned_book.format %></h3>
 <h3>Owner Note: <%= @owned_book.owner_note %></h3>
-<%= link_to "I want this book!", new_request_path + "?requestee_book_id=#{@owned_book.id}" %>
 <% if @owned_book.user == current_user %>
   <button><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
   <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete %></button>
+<% else %>
+  <%= link_to "I want this book!", new_request_path + "?requestee_book_id=#{@owned_book.id}" %>
 <% end %>

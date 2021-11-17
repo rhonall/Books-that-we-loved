@@ -1,4 +1,4 @@
-<div class="requests-page-wrapper">
+<!-- <div class="requests-page-wrapper">
   <div>
     <h1>Request you made: </h1>
     <ul>
@@ -14,6 +14,34 @@
       <% @requests_received.each do |request| %>
         <li><%= link_to request.id, request_path(request.id) %></li>
       <% end %>
+    </ul>
+  </div>
+</div> -->
+
+<div class="requests-page-wrapper">
+  <div>
+    <h1>Current Requests</h1>
+    <h3>To be confirmed</h3>
+    <ul>
+      <% @requests_received.status_active.each do |request| %>
+        <li><%= link_to request.id, request_path(request.id) %></li>
+      <% end %>
+    </ul>
+    <h3>Awaiting Response</h3>
+    <ul>
+      <% @requests_made.status_active.each do |request| %>
+        <li><%= link_to request.id, request_path(request.id) %></li>
+    <% end %>
+    </ul>
+  </div>
+  <div>
+    <h1>Past Requests</h1>
+    <ul>
+      <ul>
+        <% @all_requests.status_completed.each do |request| %>
+          <li><%= link_to request.id, request_path(request.id) %></li>
+      <% end %>
+      </ul>
     </ul>
   </div>
 </div>

@@ -10,10 +10,10 @@
     </div>
   </div>
   <h3 class="book-subtitle">Description: </h3>
-  <% if @book.description.nil? %>
-      <%= "N/A" %>
+  <% if @book.values_at(:description).present? %>
+      <%= @description %>
     <% else %>
-      <%= @book.description %>
+      <%= "n/a" %>
   <% end %>
 </div>
 
