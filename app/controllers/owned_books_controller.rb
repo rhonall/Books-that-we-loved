@@ -5,7 +5,7 @@ class OwnedBooksController < ApplicationController
 
 
   def index
-    @books = current_user.owned_books
+    @books = current_user.owned_books.status_available
   end
 
   def show

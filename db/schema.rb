@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_020814) do
+ActiveRecord::Schema.define(version: 2021_11_17_053810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_020814) do
     t.integer "condition"
     t.integer "format"
     t.text "owner_note"
+    t.integer "status", default: 0
     t.index ["book_id"], name: "index_owned_books_on_book_id"
     t.index ["user_id"], name: "index_owned_books_on_user_id"
   end

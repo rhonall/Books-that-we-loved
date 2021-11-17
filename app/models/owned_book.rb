@@ -7,6 +7,9 @@ class OwnedBook < ApplicationRecord
 
   has_one_attached :image, dependent: :purge
 
+  scope :status_available, -> { where(status: 0) }
+
+
   enum condition: {
     new: 0,
     'like-new': 1,
@@ -17,5 +20,10 @@ class OwnedBook < ApplicationRecord
   enum format: {
     paperback: 0,
     hardcover: 1
+  }, _prefix: true
+
+  enum status: {
+    available: 0,
+    'out-of-stock': 1
   }, _prefix: true
 end

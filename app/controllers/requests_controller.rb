@@ -49,12 +49,12 @@ class RequestsController < ApplicationController
 
   def accept
     @request.update(status: 1)
+    @request.requester_book.update(status: 1)
+    @request.requestee_book.update(status: 1)
     get_requests_that_have_requester_and_requestee_books()
     @invalid_requests.each do |request|
       request.update(status: 4)
     end
-    @request.requester_book.destroy
-    @request.requestee_book.destroy
   end
 
   def decline
