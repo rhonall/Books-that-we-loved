@@ -11,7 +11,7 @@
 <% if current_user && (current_user.has_role? :admin) %>
   <h3>Status: <%= @owned_book.status %></h3>
 <% end %>
-<% if @owned_book.user == current_user || (current_user.has_role? :admin) %>
+<% if @owned_book.user == current_user || (current_user && (current_user.has_role? :admin)) %>
   <button><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
   <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete %></button>
 <% else %>
