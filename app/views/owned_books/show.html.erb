@@ -1,6 +1,6 @@
 <h1><%= @owned_book.book.title %></h1>
 <% if @owned_book.image.attached? %>
-    <%= cl_image_tag @owned_book.image.key, crop: :scale, width: 300, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
+    <%= cl_image_tag @owned_book.image.key,  cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
   <% else %>
     <%= image_tag("no_image.png") %>
 <% end %>
@@ -8,7 +8,10 @@
 <h3>Condition: <%= @owned_book.condition %></h3>
 <h3>Format: <%= @owned_book.format %></h3>
 <h3>Owner Note: <%= @owned_book.owner_note %></h3>
-<% if @owned_book.user == current_user %>
+<% if current_user && (current_user.has_role? :admin) %>
+  <h3>Status: <%= @owned_book.status %></h3>
+<% end %>
+<% if @owned_book.user == current_user || (current_user.has_role? :admin) %>
   <button><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
   <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete %></button>
 <% else %>

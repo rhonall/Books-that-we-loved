@@ -2,7 +2,7 @@
   <h1>Owned Books List</h1>
   <ul>
     <% @owned_books.each do |book| %>
-      <li><%= book.book.title %></li>
+      <li><%= link_to book.book.title, owned_book_path(book.id) %></li>
     <% end %>
   </ul>
 <% end %>

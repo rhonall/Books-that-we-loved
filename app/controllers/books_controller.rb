@@ -25,6 +25,7 @@ class BooksController < ApplicationController
   def create
     if Book.find_by(book_api_id: params[:book][:book_api_id]).nil?
       @book = Book.new(book_params)
+      puts params[:book][:authors]
       @authors_array = params[:book][:authors].split(', ')
       @authors_array.each do |author|
         if Author.find_by(name: author).nil?
