@@ -6,6 +6,9 @@
         <li><%= current_user.username %></li>
         <li><%= link_to "Add New Book", find_path %></li>
         <li><%= link_to "Account", users_path %></li>
+        <% if current_user.has_role? :admin %>
+          <li><%= link_to "Admin", admins_path %></li>
+        <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path %></li>
@@ -14,3 +17,4 @@
     </ul>
   </div>
 </nav>
+

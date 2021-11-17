@@ -4,10 +4,10 @@
 <h3>Send to:</h3>
   <%= @request.requestee.username%>
 <h3>Request for:</h3>
-  <%= link_to @request.requestee_book.book.title, owned_book_path(@request.requestee_book.book.id)%>
+  <%= link_to @request.requestee_book.book.title, owned_book_path(@request.requestee_book.id)%>
 
 <h3>Offer:</h3>
-<%= link_to @request.requester_book.book.title, owned_book_path(@request.requester_book.book.id)%>
+<%= link_to @request.requester_book.book.title, owned_book_path(@request.requester_book.id)%>
 
 <h3>Status:</h3> 
 <%= @request.status.capitalize %>
@@ -19,6 +19,9 @@
   <button><%= link_to "Accept request", accept_request_path(@request.id)%></button>
   <button><%= link_to "Decline request", decline_request_path(@request.id)%></button>
   <% end %>
+  <% elsif @request.status == 'invalid' %>
+    <h3>Note:</h3>
+    <p>Unfortunately one of the book is no longer available.</p>
 <% end %>
 
 

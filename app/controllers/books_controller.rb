@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  # before_action { check_auth(Book) }
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action -> { check_auth(Book) }, only: [:new, :create, :edit, :update, :destroy]
   before_action :get_params, only: [:new]
   before_action :get_genres, only: [:new, :create]
   before_action :get_book, only: [:show]
@@ -36,6 +36,15 @@ class BooksController < ApplicationController
     end
     redirect_to new_owned_book_path(title: "#{@book.title}")
     flash[:notice] = "Book is added to library, please continue to add your book for swap"
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   # Search bar

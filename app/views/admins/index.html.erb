@@ -1,0 +1,8 @@
+<% if current_user && (current_user.has_role? :admin) %>
+  <h1>Owned Books List</h1>
+  <ul>
+    <% @owned_books.each do |book| %>
+      <li><%= book.book.title %></li>
+    <% end %>
+  </ul>
+<% end %>

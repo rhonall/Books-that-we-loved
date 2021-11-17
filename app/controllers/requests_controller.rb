@@ -49,6 +49,10 @@ class RequestsController < ApplicationController
 
   def accept
     @request.update(status: 1)
+    get_requests_that_have_requester_and_requestee_books()
+    @invalid_requests.each do |request|
+      request.update(status: 4)
+    end
     @request.requester_book.destroy
     @request.requestee_book.destroy
   end
@@ -85,6 +89,10 @@ class RequestsController < ApplicationController
 
   def get_all_requests_of_current_user
     @all_requests = Request.where(requester_id: current_user.id).or(Request.where(requestee_id: current_user.id))
+  end
+
+  def get_requests_that_have_requester_and_requestee_books
+    @invalid_requests = Request.status_active.where(requester_book: @request.requester_book).or(Request.status_active.where(requestee_book: @request.requestee_book))
   end
 
 

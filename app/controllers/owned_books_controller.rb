@@ -1,12 +1,11 @@
 class OwnedBooksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :get_params_title, only: %i[new]
   before_action :get_owned_book, only: %i[show edit update destroy]
 
 
   def index
     @books = current_user.owned_books
-    @requests = Request.select(:id)
   end
 
   def show

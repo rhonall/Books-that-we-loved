@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :requests
   resources :fav_genres
   get '/users', to: 'users#index'
+  get '/admins', to: 'admins#index'
   get '/find', to: 'books#find'
   get '/found_results', to: 'books#found_results'
   get '/search', to: 'books#search'

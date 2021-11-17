@@ -12,6 +12,13 @@
   
     <h3 class="book-subtitle">Description: </h3>
     <%= @book.description %>
+    <% if current_user && policy(@book).edit? %>
+      <button><%= link_to "Edit", edit_book_path(@book.id) %></button>
+    <% end %>
+    <% if current_user && policy(@book).destroy? %>
+      <button><%= link_to "Delete", book_path(@book.id), method: :delete, data: { confirm: "Are you sure?" } %></button>
+    <% end %>
+
   </div>
   
   <div class="show-book-wrapper-right">
