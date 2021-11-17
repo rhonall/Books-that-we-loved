@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :get_request, only: [:show, :edit, :update, :destroy, :action, :accept, :decline]
   before_action :get_requestee_book, only: [:new]
   before_action :get_current_user_owned_books, only: [:new, :edit]

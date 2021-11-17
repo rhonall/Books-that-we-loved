@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+  # before_action { check_auth(Book) }
   before_action :get_params, only: [:new]
   before_action :get_genres, only: [:new, :create]
   before_action :get_book, only: [:show]
@@ -53,6 +55,8 @@ class BooksController < ApplicationController
   def found_results
     @books = GoogleBooks.search("intitle:#{params[:find]}")
   end
+
+  private
 
   def book_params
     params.require(:book).permit(:title, :description, :book_api_id, :cover, genre_ids: [])
