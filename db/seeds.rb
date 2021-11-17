@@ -3,6 +3,7 @@
 # Genre.destroy.all
 # Book.destroy.all
 # OwnedBook.destroy.all
+# Request.destroy.all
 
 genres = [
   Genre.create!(name: "art"),
