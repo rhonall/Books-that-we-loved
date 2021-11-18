@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2021_11_18_004856) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
-    t.string "book_api_id"
+    t.string "book_api_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "cover"
@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 2021_11_18_004856) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "condition"
-    t.integer "format"
+    t.integer "condition", null: false
+    t.integer "format", null: false
     t.text "owner_note"
     t.integer "status", default: 0
     t.index ["book_id"], name: "index_owned_books_on_book_id"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_004856) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username"
+    t.string "username", null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

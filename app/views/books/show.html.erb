@@ -1,16 +1,20 @@
-<div class="show-book-wrapper">
+
+  <div>
+    <div>
+<!-- <div class="show-book-wrapper">
   <div class="show-book-wrapper-left">
-    <div class="show-book-wrapper-left-top">
+    <div class="show-book-wrapper-left-top"> -->
       <img src="<%= @book.cover %>" alt="Book cover">
-      <div class="book-title-authors">
+      <div>
+      <!-- <div class="book-title-authors"> -->
         <h1><%= @book.title %></h1>
-        <h2 class="authors">By <%= safe_join(@book.authors.map{ |a| link_to(a.name, author_path(a.id)) }, ", ".html_safe) %></h2>
+        <h2>By <%= safe_join(@book.authors.map{ |a| link_to(a.name, author_path(a.id)) }, ", ".html_safe) %></h2>
       </div>
     </div>
-    <h3 class="book-subtitle">Genres: </h3>
+    <h3>Genres: </h3>
     <%= safe_join(@book.genres.map{ |g| link_to(g.name.capitalize, genre_path(g.id)) }, ", ".html_safe) %>
   
-    <h3 class="book-subtitle">Description: </h3>
+    <h3>Description: </h3>
     <%= @book.description %>
     <% if current_user && policy(@book).edit? %>
       <button><%= link_to "Edit", edit_book_path(@book.id) %></button>
@@ -21,17 +25,21 @@
 
   </div>
   
+  <div>
+    <div>
+<!--   
   <div class="show-book-wrapper-right">
-    <div class="top">
+    <div class="top"> -->
       <h3>You have one that want to swap?</h3>
       <button><%= link_to "Click here", new_owned_book_path + "?title=#{@book.title}" %></button>
     </div>
   
-    <div class="bottom">
+    <div>
+    <!-- <div class="bottom"> -->
       <h3>List of owners: </h3>
       <% if @book.owned_books.status_available.empty? %>
       <p>None at the moment</p>
-      <ul class="list">
+      <ul>
       <% else %>
         <% @book.owned_books.status_available.each do |owned_book| %>
         <li><%= link_to owned_book.user.username, owned_book_path(owned_book.id) %></li>
@@ -40,7 +48,7 @@
       </ul>
     </div>
   </div>
-</div>
+
 
 
 

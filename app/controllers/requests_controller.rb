@@ -81,7 +81,7 @@ class RequestsController < ApplicationController
   end
 
   def get_current_user_owned_books
-    @owned_books = current_user.owned_books
+    @owned_books = current_user.owned_books.status_available
   end
 
   def request_params

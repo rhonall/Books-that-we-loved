@@ -18,7 +18,7 @@
   <%= f.hidden_field :requestee_id, value: @book.user.id %>
   <%= f.hidden_field :requestee_book_id, value: requestee_book_id %>
   <% @owned_books.each do |b| %>
-    <%= f.radio_button :requester_book_id, b.id %>
+    <%= f.radio_button :requester_book_id, b.id, checked: "checked" %>
     <%= f.label :title, b.book.title %>
   <% end %>
   <%= f.submit %>

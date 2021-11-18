@@ -1,9 +1,12 @@
 <h1>Add book to the library</h1>
 
-<div class="show-book-wrapper-left">
-  <div class="show-book-wrapper-left-top">
+<div>
+  <div>
+<!-- <div class="show-book-wrapper-left">
+  <div class="show-book-wrapper-left-top"> -->
     <img src="<%= @cover %>" alt="Book cover">
-    <div class="book-title-authors">
+    <div>
+    <!-- <div class="book-title-authors"> -->
       <h1><%= @title %></h1>
       <h2 class="authors">By <%= @authors %></h2>
     </div>
@@ -16,7 +19,8 @@
   <% end %>
 </div>
 
-<div class="show-book-wrapper-right">
+<div>
+<!-- <div class="show-book-wrapper-right"> -->
   <%= form_with model: @book do |f| %>
   <div>
     <%= f.hidden_field :title, value: @title %>

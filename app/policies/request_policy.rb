@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserPolicy
+class RequestPolicy
   attr_reader :user, :record
 
   def initialize(user, record)

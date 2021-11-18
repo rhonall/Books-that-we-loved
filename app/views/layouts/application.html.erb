@@ -17,6 +17,13 @@
     <div class="container">
       <%= render 'shared/navbar' %>
       <%= render 'shared/topbar' %>
+      <% if flash[:errors] %>
+      <section id="errors">
+          <% flash[:errors].each do |error| %>
+              <p><%= error %></p>
+          <% end %>
+      </section>
+      <% end %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>

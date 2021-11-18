@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
   before_action -> { check_auth(Book) }, except: [:search]
   before_action :get_params, only: [:new]
-  before_action :get_genres, only: [:new, :create]
+  before_action :get_genres, only: [:new, :create, :edit, :update]
   before_action :get_book, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -24,13 +24,19 @@ class BooksController < ApplicationController
   end
 
   def create
-    if Book.find_by(book_api_id: params[:book][:book_api_id]).nil?
-      @book = Book.new(book_params)
-      add_or_edit_authors(@book)
-      @book.save!
+    begin
+      if Book.find_by(book_api_id: params[:book][:book_api_id]).nil?
+        @book = Book.new(book_params)
+        add_or_edit_authors(@book)
+        @book.save!
+      end
+      redirect_to new_owned_book_path(title: "#{@book.title}")
+      flash[:notice] = "Book is added to library, please continue to add your book for swap"
+    rescue
+      get_params()
+      flash.now[:errors] = @book.errors.messages.values.flatten
+      render 'new'
     end
-    redirect_to new_owned_book_path(title: "#{@book.title}")
-    flash[:notice] = "Book is added to library, please continue to add your book for swap"
   end
 
   def edit
@@ -41,9 +47,14 @@ class BooksController < ApplicationController
     @book.update(book_params)
     @book.authors.destroy_all
     add_or_edit_authors(@book)
-    @book.save!
-    redirect_to book_path(@book.id)
-    flash[:notice] = "Book has updated successfully!"
+    begin
+      @book.save!
+      redirect_to book_path(@book.id)
+      flash[:notice] = "Book has updated successfully!"
+    rescue
+      flash.now[:errors] = @book.errors.messages.values.flatten
+      render 'edit'
+    end
   end
 
   def destroy
@@ -83,7 +94,7 @@ class BooksController < ApplicationController
   end
 
   def get_genres
-    @genres = Genre.all
+    @genres = Genre.select(:id, :name)
   end
 
   def get_params

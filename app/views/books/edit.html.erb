@@ -1,6 +1,7 @@
 <h1>Edit Book</h1>
 
-<div class="show-book-wrapper-right">
+<div>
+<!-- <div class="show-book-wrapper-right"> -->
   <%= form_with model: @book do |f| %>
   <div>
     <%= f.label :title %>
@@ -9,8 +10,7 @@
     <%= f.text_field :authors, value: @book.authors.map { |a| a.name }.join(', ') %>
     <%= f.label :description %>
     <%= f.text_area :description, value: @book.description %>
-    <%= f.label :book_api_id %>
-    <%= f.text_field :book_api_id, value: @book.book_api_id %>
+    <%= f.hidden_field :book_api_id, value: @book.book_api_id %>
     <%= f.label :cover %>
     <%= f.text_field :cover, value: @book.cover %>
   </div>
@@ -22,6 +22,6 @@
   <div>
     <%= f.submit "Edit Book" %>
   </div>
-<% end %>
+  <% end %>
 </div>
 

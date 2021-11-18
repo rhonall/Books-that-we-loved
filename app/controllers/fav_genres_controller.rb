@@ -40,7 +40,7 @@ class FavGenresController < ApplicationController
   private
 
   def get_genres
-    @genres = Genre.order(:name)
+    @genres = Genre.select(:id, :name).order(:name)
   end
 
   def get_fav_genres
