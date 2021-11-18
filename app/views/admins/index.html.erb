@@ -1,13 +1,10 @@
-<% if current_user && (current_user.has_role? :admin) %>
   <h1>Owned Books List</h1>
   <ul>
     <% @owned_books.each do |book| %>
       <li><%= link_to book.book.title, owned_book_path(book.id) %></li>
     <% end %>
   </ul>
-<% end %>
 
-<% if current_user && policy(Author).destroy? %>
 <div>
   <h1>Authors List</h1>
   <% if @authors_have_no_books.length == 0 %>
@@ -24,4 +21,3 @@
   <% end %>
   </ul>
 </div>
-<% end %>

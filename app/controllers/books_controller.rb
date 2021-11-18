@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action -> { check_auth(Book) }, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action -> { check_auth(Book) }, except: [:search]
   before_action :get_params, only: [:new]
   before_action :get_genres, only: [:new, :create]
   before_action :get_book, only: [:show, :edit, :update, :destroy]

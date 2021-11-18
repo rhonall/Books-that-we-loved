@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BookPolicy
+class GenrePolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -17,7 +17,7 @@ class BookPolicy
   end
 
   def create?
-    @user.has_any_role? :user, :admin
+    @user.has_any_role? :admin
   end
 
   def new?
@@ -25,7 +25,7 @@ class BookPolicy
   end
 
   def update?
-    @user.has_role? :admin
+    create?
   end
 
   def edit?
@@ -34,14 +34,6 @@ class BookPolicy
 
   def destroy?
     update?
-  end
-
-  def find?
-    create?
-  end
-
-  def found_results?
-    create?
   end
 
   class Scope

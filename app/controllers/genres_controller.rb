@@ -1,4 +1,6 @@
 class GenresController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action -> { check_auth(Genre) }
   before_action :get_genres, only: [:index]
   before_action :get_genre, only: [:show]
   def index

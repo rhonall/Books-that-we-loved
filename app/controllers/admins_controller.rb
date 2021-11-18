@@ -1,11 +1,19 @@
 class AdminsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    get_all_owned_books()
-    get_authors()
-    get_author_with_no_books()
+    if current_user && (current_user.has_role? :admin)
+      get_all_owned_books()
+      get_authors()
+      get_author_with_no_books()
+    else
+      redirect_to books_path
+      flash[:alert] = "You are not authorized to perform this action."
+    end
   end
 
   private 
+  
   def get_all_owned_books
     @owned_books = OwnedBook.select(:id, :book_id)
   end

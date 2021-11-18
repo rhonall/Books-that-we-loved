@@ -1,5 +1,6 @@
 class OwnedBooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action -> { check_auth(OwnedBook) }
   before_action :get_params_title, only: %i[new]
   before_action :get_owned_book, only: %i[show edit update destroy]
 

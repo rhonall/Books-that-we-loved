@@ -25,7 +25,7 @@ class AuthorPolicy
   end
 
   def update?
-    @user.has_role? :user, :admin
+    create?
   end
 
   def edit?

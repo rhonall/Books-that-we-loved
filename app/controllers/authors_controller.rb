@@ -1,6 +1,9 @@
 class AuthorsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action -> { check_auth(Author) }
   before_action :get_authors, only: [:index]
   before_action :get_author, only: [:show, :destroy]
+
   def index
   end
 

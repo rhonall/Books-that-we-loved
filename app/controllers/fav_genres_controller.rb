@@ -1,5 +1,6 @@
 class FavGenresController < ApplicationController
-  
+  before_action :authenticate_user!
+  before_action -> { check_auth(FavGenre) }
   before_action :get_genres, only: [:new, :edit]
   before_action :get_fav_genres, only: [:index, :edit]
 
