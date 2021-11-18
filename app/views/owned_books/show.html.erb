@@ -13,7 +13,7 @@
 <% end %>
 <% if @owned_book.user == current_user || (current_user && (current_user.has_role? :admin)) %>
   <button><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
-  <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete %></button>
+  <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete , data: { confirm: "Are you sure?" } %></button>
 <% end %>
 <% if @owned_book.user != current_user %>
   <%= link_to "I want this book!", new_request_path + "?requestee_book_id=#{@owned_book.id}" %>

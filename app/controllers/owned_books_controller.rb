@@ -36,7 +36,8 @@ class OwnedBooksController < ApplicationController
   end
 
   def destroy
-    @owned_book.destroy
+    @owned_book.update(status: 1)
+    flash[:notice] = "Your book has deleted successfully!"
     redirect_to book_path(@owned_book.book.id)
   end
 

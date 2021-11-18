@@ -9,4 +9,8 @@ class Book < ApplicationRecord
   has_many :owned_books
   has_many :users, through: :owned_books, source: :user
 
+  enum status: {
+    valid: 0,
+    invalid: 1
+  }, _prefix: true
 end

@@ -6,3 +6,22 @@
     <% end %>
   </ul>
 <% end %>
+
+<% if current_user && policy(Author).destroy? %>
+<div>
+  <h1>Authors List</h1>
+  <% if @authors_have_no_books.length == 0 %>
+    <p>All authors have books under their name.</p>
+  <% else %>
+    <p>Below authors have no books under their name, it is better to clean that up.</p>
+    <ul>
+    <% @authors_have_no_books.each do |author| %>
+      <li>
+        <%= link_to author.name, author_path(author.id) %>
+        <button><%= link_to "Delete", author_path(author.id), method: :delete, data: { confirm: "Are you sure?" }%></button>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>
+<% end %>

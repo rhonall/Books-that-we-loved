@@ -1,3 +1,6 @@
+<% if current_user.sign_in_count == 1 %>
+<h3>Welcome <%= "#{current_user.username}" %> 😊 Please choose your favourite genres: </h3>
+<% end %>
 <%= form_with url: '/fav_genres', method: :post do |f| %>
   <%= f.collection_check_boxes :genres_id, @genres, :id, :name %>
   <%= f.submit %>

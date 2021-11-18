@@ -3,10 +3,10 @@ class BooksController < ApplicationController
   before_action -> { check_auth(Book) }, only: [:new, :create, :edit, :update, :destroy]
   before_action :get_params, only: [:new]
   before_action :get_genres, only: [:new, :create]
-  before_action :get_book, only: [:show]
+  before_action :get_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.select(:title, :id, :cover)
+    @books = Book.select(:title, :id, :cover, :status).status_valid
   end
 
   def show
@@ -15,8 +15,9 @@ class BooksController < ApplicationController
   def new
     book = Book.find_by(book_api_id: params[:book_api_id])
     if !book.nil?
+      book.update(status: 0)
       redirect_to book_path(book)
-      flash[:notice] = "Book is already in library."
+      flash[:notice] = "Please click swap to add your book to this platform."
     else
       @book = Book.new
     end
@@ -25,14 +26,7 @@ class BooksController < ApplicationController
   def create
     if Book.find_by(book_api_id: params[:book][:book_api_id]).nil?
       @book = Book.new(book_params)
-      puts params[:book][:authors]
-      @authors_array = params[:book][:authors].split(', ')
-      @authors_array.each do |author|
-        if Author.find_by(name: author).nil?
-          Author.create(name: author)
-        end
-        @book.authors << Author.find_by(name: author)
-      end
+      add_or_edit_authors(@book)
       @book.save!
     end
     redirect_to new_owned_book_path(title: "#{@book.title}")
@@ -40,12 +34,28 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @genres = Genre.select(:id, :name)
   end
 
   def update
+    @book.update(book_params)
+    @book.authors.destroy_all
+    add_or_edit_authors(@book)
+    @book.save!
+    redirect_to book_path(@book.id)
+    flash[:notice] = "Book has updated successfully!"
   end
 
   def destroy
+    @affected_ownedbooks = OwnedBook.select(:id, :book_id, :status, :user_id).where(book_id: @book.id).status_available
+    if @affected_ownedbooks.length > 0
+      flash[:notice] = "Sorry, this book cannot be deleted as there is owned book linked to this book!"
+      render 'show'
+    else
+      @book.update(status: 1)
+      flash[:notice] = "Book has been destroyed successfully!"
+      redirect_to books_path
+    end
   end
 
   # Search bar
@@ -86,5 +96,15 @@ class BooksController < ApplicationController
 
   def get_book
     @book = Book.find(params[:id])
+  end
+
+  def add_or_edit_authors(book)
+    @authors_array = params[:book][:authors].split(', ')
+    @authors_array.each do |author|
+      if Author.find_by(name: author).nil?
+        Author.create(name: author)
+      end
+      book.authors << Author.find_by(name: author)
+    end
   end
 end
