@@ -1,27 +1,28 @@
-<h1>Edit Book</h1>
-
-<div>
-<!-- <div class="show-book-wrapper-right"> -->
-  <%= form_with model: @book do |f| %>
+<div class="wrapper">
+  <h1>Edit Book</h1>
+  
   <div>
-    <%= f.label :title %>
-    <%= f.text_field :title, value: @book.title %>
-    <%= f.label :authors %>
-    <%= f.text_field :authors, value: @book.authors.map { |a| a.name }.join(', ') %>
-    <%= f.label :description %>
-    <%= f.text_area :description, value: @book.description %>
-    <%= f.hidden_field :book_api_id, value: @book.book_api_id %>
-    <%= f.label :cover %>
-    <%= f.text_field :cover, value: @book.cover %>
+    <%= form_with model: @book do |f| %>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title, value: @book.title %>
+      <%= f.label :authors %>
+      <%= f.text_field :authors, value: @book.authors.map { |a| a.name }.join(', ') %>
+      <%= f.label :description %>
+      <%= f.text_area :description, value: @book.description %>
+      <%= f.hidden_field :book_api_id, value: @book.book_api_id %>
+      <%= f.label :cover %>
+      <%= f.text_field :cover, value: @book.cover %>
+    </div>
+    <div>
+      <h3><%= f.label :genres, "Genres:" %></h3>
+      <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
+    </div>
+  
+    <div>
+      <div class="submit"><%= f.submit "Edit", class: 'btn btn-dark' %></div>
+    </div>
+    <% end %>
   </div>
-  <div>
-    <h3><%= f.label :genres, "Genres:" %></h3>
-    <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
-  </div>
-
-  <div>
-    <%= f.submit "Edit Book" %>
-  </div>
-  <% end %>
+  
 </div>
-

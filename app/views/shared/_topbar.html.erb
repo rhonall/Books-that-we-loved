@@ -1,19 +1,17 @@
 <div class="top-bar">
-
-  <div class="search-bar">
-    <%= form_with url: '/search', method: :get do |f| %>
-    <%= f.label :search_by %>
-    <%= f.select :type, ['author', 'title'] %>
-    <%= f.text_field :query %>
-      <%= f.submit :search %>
-    <% end %>
-  </div>
-
-  <div>
-    <ul class="top-list">
-      <li><%= link_to "BOOKS", books_path %></li>
-      <li><%= link_to "AUTHORS", authors_path %></li>
-      <li><%= link_to "GENRES", genres_path %></li>
-    </ul>
-  </div>
+    <div class="top-bar-top top-bar-search">
+      <%= form_with url: '/search', method: :get do |f| %>
+      <%= f.select :type, ['author', 'title'] %>
+      <%= f.text_field :query %>
+        <%= f.submit :search %>
+      <% end %>
+    </div>
+    <div class="top-bar-bottom">
+      <ul class="top-bar-menu">
+        <li><%= link_to "BOOKS", books_path %></li>
+        <li><%= link_to "AUTHORS", authors_path %></li>
+        <li><%= link_to "GENRES", genres_path %></li>
+      </ul>
+    </div>
 </div>
+

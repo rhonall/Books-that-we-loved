@@ -1,4 +1,3 @@
-
 <div class="page-wrapper">
   <% @genres.each do |genre| %>
     <div class="genre-wrapper"><%= link_to genre.name.capitalize, genre_path(genre.id) %></div>

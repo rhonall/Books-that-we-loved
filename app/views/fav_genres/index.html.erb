@@ -1,7 +1,11 @@
-<h1>My Favourite Genres</h1>
-<ul>
-  <% @fav_genres.each do |genre| %>
-    <li><%= genre.genre.name.capitalize %></li>
-  <% end %>
-  <button><%= link_to 'Edit', edit_fav_genre_path(current_user.id) %></button>
-</ul>
+<div class="wrapper fav_genres">
+  <div>
+    <h1 class="title">My Favourite Genres</h1>
+    <ul>
+      <% @fav_genres.each do |genre| %>
+        <li><%= genre.genre.name.capitalize %></li>
+      <% end %>
+      <button class="btn btn-dark"><%= link_to 'Edit', edit_fav_genre_path(current_user.id) %></button>
+    </ul>
+  </div>
+</div>

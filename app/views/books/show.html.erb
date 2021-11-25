@@ -1,54 +1,43 @@
-
-  <div>
-    <div>
-<!-- <div class="show-book-wrapper">
-  <div class="show-book-wrapper-left">
-    <div class="show-book-wrapper-left-top"> -->
-      <img src="<%= @book.cover %>" alt="Book cover">
+<div class="book-page-wrapper">
+  <div  class="book-side">
+    <div class="book-side-main">
+      <div class="book-cover"><img src="<%= @book.cover %>" alt="Book cover"></div>
       <div>
-      <!-- <div class="book-title-authors"> -->
-        <h1><%= @book.title %></h1>
-        <h2>By <%= safe_join(@book.authors.map{ |a| link_to(a.name, author_path(a.id)) }, ", ".html_safe) %></h2>
+        <h1 class="book-title title"><%= @book.title %></h1>
+        <h2 class="book-author title">By <%= safe_join(@book.authors.map{ |a| link_to(a.name, author_path(a.id)) }, ", ".html_safe) %></h2>
+        <h3 class="book-genres sub-title">Genres: 
+        <%= safe_join(@book.genres.map{ |g| link_to(g.name.capitalize, genre_path(g.id)) }, ", ".html_safe) %></h3>
       </div>
     </div>
-    <h3>Genres: </h3>
-    <%= safe_join(@book.genres.map{ |g| link_to(g.name.capitalize, genre_path(g.id)) }, ", ".html_safe) %>
-  
-    <h3>Description: </h3>
-    <%= @book.description %>
-    <% if current_user && policy(@book).edit? %>
-      <button><%= link_to "Edit", edit_book_path(@book.id) %></button>
-    <% end %>
-    <% if current_user && policy(@book).destroy? %>
-      <button><%= link_to "Delete", book_path(@book.id), method: :delete, data: { confirm: "Are you sure?" } %></button>
-    <% end %>
-
+    <div>
+      <h3 class="sub-title">Description:</h3>
+      <div class="book-description"><%= @book.description %></div>
+      <% if current_user && policy(@book).edit? %>
+        <button class="btn btn-dark"><%= link_to "Edit", edit_book_path(@book.id) %></button>
+      <% end %>
+      <% if current_user && policy(@book).destroy? %>
+        <button class="btn btn-dark"><%= link_to "Delete", book_path(@book.id), method: :delete, data: { confirm: "Are you sure?" } %></button>
+      <% end %>
+    </div>
   </div>
   
-  <div>
-    <div>
-<!--   
-  <div class="show-book-wrapper-right">
-    <div class="top"> -->
-      <h3>You have one that want to swap?</h3>
-      <button><%= link_to "Click here", new_owned_book_path + "?title=#{@book.title}" %></button>
+  <div class="request-side">
+    <div class="request-top">
+      <h3 class="sub-title">You have one that want to swap?</h3>
+      <button class="btn btn-dark"><%= link_to "Click here", new_owned_book_path + "?title=#{@book.title}" %></button>
     </div>
   
-    <div>
-    <!-- <div class="bottom"> -->
-      <h3>List of owners: </h3>
+    <div class="request-bottom">
+      <h3 class="sub-title">List of owners: </h3>
       <% if @book.owned_books.status_available.empty? %>
       <p>None at the moment</p>
-      <ul>
       <% else %>
+      <ul>
         <% @book.owned_books.status_available.each do |owned_book| %>
         <li><%= link_to owned_book.user.username, owned_book_path(owned_book.id) %></li>
         <% end %>
-      <% end %>
       </ul>
+      <% end %>
     </div>
   </div>
-
-
-
-
+</div>

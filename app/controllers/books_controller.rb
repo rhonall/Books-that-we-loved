@@ -98,11 +98,11 @@ class BooksController < ApplicationController
   end
 
   def get_params
-    @title = params[:title]
-    @authors = params[:authors]
-    @description = params[:description]
-    @book_api_id = params[:book_api_id]
-    @cover = params[:cover]
+    @title = params[:title] || params[:book][:title]
+    @authors = params[:authors] || params[:book][:authors]
+    @description = params[:description] || params[:book][:description]
+    @book_api_id = params[:book_api_id] || params[:book][:book_api_id]
+    @cover = params[:cover] || params[:book][:cover]
   end
 
   def get_book

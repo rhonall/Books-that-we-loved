@@ -1,23 +1,21 @@
-
-
-<div class="requests-page-wrapper">
-  <div>
-    <h1>Current Requests</h1>
-    <h3>To be confirmed</h3>
+<div class="wrapper requests">
+  <div class="current-requests">
+    <h1 class="title">Current Requests</h1>
+    <h3 class="sub-title">To be confirmed</h3>
     <ul>
       <% @requests_received.status_active.each do |request| %>
         <li><%= link_to request.id, request_path(request.id) %></li>
       <% end %>
     </ul>
-    <h3>Awaiting Response</h3>
+    <h3 class="sub-title">Awaiting Response</h3>
     <ul>
       <% @requests_made.status_active.each do |request| %>
         <li><%= link_to request.id, request_path(request.id) %></li>
     <% end %>
     </ul>
   </div>
-  <div>
-    <h1>Past Requests</h1>
+  <div class="past-requests">
+    <h1 class="title">Past Requests</h1>
     <ul>
       <ul>
         <% @all_requests.status_completed.each do |request| %>

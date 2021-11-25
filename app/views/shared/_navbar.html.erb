@@ -1,24 +1,47 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <%= link_to "Books that we loved", books_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if user_signed_in? %>
-          <li class="nav-link active"><%= current_user.username %></li>
-          <li class="nav-item"><%= link_to "Add New Book", find_path, class: "nav-link active" %></li>
-          <li class="nav-item"><%= link_to "Account", users_path, class: "nav-link active" %></li>
-          <% if current_user.has_role? :admin %>
-            <li class="nav-item"><%= link_to "Admin", admins_path, class: "nav-link active" %></li>
-          <% end %>
-          <li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active" %></li>
-        <% else %>
-          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link active" %></li>
-          <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link active" %></li>
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand logo"><%= link_to "Books that we loved", books_path%></div>
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <li><%= current_user.username %></li>
+        <li><%= link_to "Add New Book", find_path %></li>
+        <li><%= link_to "Account", users_path %></li>
+        <% if current_user.has_role? :admin %>
+          <li><%= link_to "Admin", admins_path %></li>
         <% end %>
-      </ul>
-    </div>
+        <li><button class="btn btn-dark-outline"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li></button>
+        <% else %>
+        <li><button class="btn btn-dark-outline"><%= link_to "Login", new_user_session_path %></button></li>
+        <li><button class="btn btn-dark"><%= link_to "Sign up", new_user_registration_path %></button></li>
+      <% end %>
+    </ul>
+    <!-- Hamburger Menu -->
+    <button type="button" class="hamburger" id="menu-btn">
+      <span class="hamburger-top"></span>
+      <span class="hamburger-middle"></span>
+      <span class="hamburger-bottom"></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu hidden" id="menu">
+  <ul class="mobile-menu-menu">
+    <% if user_signed_in? %>
+      <li><%= current_user.username %></li>
+      <li><%= link_to "Add New Book", find_path %></li>
+      <li><%= link_to "Account", users_path %></li>
+  </ul>
+  <ul class="mobile-menu-btns">
+    <% if current_user.has_role? :admin %>
+      <li><%= link_to "Admin", admins_path %></li>
+    <% end %>
+    <li><button class="btn btn-dark-outline"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li></button>
+  <% else %>
+    <li><button class="btn btn-dark-outline"><%= link_to "Login", new_user_session_path %></button></li>
+    <li><button class="btn btn-dark"><%= link_to "Sign up", new_user_registration_path %></button></li>
+  <% end %>
+  </ul>
+</div>
+
+

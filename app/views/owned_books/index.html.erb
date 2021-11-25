@@ -1,8 +1,8 @@
-<h1>My books</h1>
-<ul>
-  <% @books.each do |book| %>
-    <li><%= link_to book.book.title, owned_book_path(book.id) %></li>
-  <% end %>
-</ul>
-
-
+<div class="wrapper owned-books">
+  <h1 class="title">My Books</h1>
+  <ul>
+    <% @books.each do |book| %>
+      <li><%= link_to book.book.title, owned_book_path(book.id) %></li>
+    <% end %>
+  </ul>
+</div>

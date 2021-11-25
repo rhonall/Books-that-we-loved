@@ -36,6 +36,14 @@ class RequestPolicy
     update?
   end
 
+  def accept?
+    create?
+  end
+
+  def decline?
+    create?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

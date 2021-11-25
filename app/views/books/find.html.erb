@@ -1,11 +1,15 @@
-<h1>Add New Book</h1>
-
-<%= form_with url: "/found_results", method: :get do |f| %>
-<div class="search-bar">
-  <%= f.label :find, "Book Title:" %>
-  <%= f.text_field :find, placeholder: "Book Title" %>
-  <div class="search-bar-btn">
-    <%= f.submit "Search for book"%>
+<div class="wrapper find_book">
+  <div>
+    <h1 class="title find_book_title">Add New Book</h1>
+    
+    <%= form_with url: "/found_results", method: :get do |f| %>
+    <div class="search-bar">
+      <%= f.label :find, "Book Title:" %>
+      <%= f.text_field :find, placeholder: "Book Title" %>
+      <div class="search-btn">
+        <div class="submit"><%= f.submit "Search", class: 'btn btn-dark' %></div>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
-<% end %>

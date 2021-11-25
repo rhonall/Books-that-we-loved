@@ -1,42 +1,41 @@
-<h1>Add book to the library</h1>
-
-<div>
-  <div>
-<!-- <div class="show-book-wrapper-left">
-  <div class="show-book-wrapper-left-top"> -->
-    <img src="<%= @cover %>" alt="Book cover">
+<div class="wrapper add-new-book">
+  <div class="add-new-book-form">
+    <h1 class="title">Add book to the library</h1>
     <div>
-    <!-- <div class="book-title-authors"> -->
-      <h1><%= @title %></h1>
-      <h2 class="authors">By <%= @authors %></h2>
+      <div>
+        <img src="<%= @cover %>" alt="Book cover">
+        <div>
+          <h1 class="title"><%= @title %></h1>
+          <h1 class="title">By <%= @authors %></h1>
+        </div>
+      </div>
+      <h3 class="sub-title">Description: </h3>
+      <% if @book.values_at(:description).present? %>
+          <%= @description %>
+        <% else %>
+          <%= "n/a" %>
+      <% end %>
+    </div>
+    
+    <div>
+      <%= form_with model: @book do |f| %>
+      <div>
+        <%= f.hidden_field :title, value: @title %>
+        <%= f.hidden_field :authors, value: @authors %>
+        <%= f.hidden_field :description, value: @description %>
+        <%= f.hidden_field :book_api_id, value: @book_api_id %>
+        <%= f.hidden_field :cover, value: @cover %>
+      </div>
+      <div>
+        <h3 class="sub-title"><%= f.label :genres, "Please select suitable genres for this book:" %></h3>
+        <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
+      </div>
+    
+      <div>
+        <div class="submit"><%= f.submit "Add", class: 'btn btn-dark' %></div>
+      </div>
+    <% end %>
     </div>
   </div>
-  <h3 class="book-subtitle">Description: </h3>
-  <% if @book.values_at(:description).present? %>
-      <%= @description %>
-    <% else %>
-      <%= "n/a" %>
-  <% end %>
+  
 </div>
-
-<div>
-<!-- <div class="show-book-wrapper-right"> -->
-  <%= form_with model: @book do |f| %>
-  <div>
-    <%= f.hidden_field :title, value: @title %>
-    <%= f.hidden_field :authors, value: @authors %>
-    <%= f.hidden_field :description, value: @description %>
-    <%= f.hidden_field :book_api_id, value: @book_api_id %>
-    <%= f.hidden_field :cover, value: @cover %>
-  </div>
-  <div>
-    <h3><%= f.label :genres, "Please select suitable genres for this book:" %></h3>
-    <%= f.collection_check_boxes :genre_ids, @genres, :id, :name %>
-  </div>
-
-  <div>
-    <%= f.submit "Add Book" %>
-  </div>
-<% end %>
-</div>
-

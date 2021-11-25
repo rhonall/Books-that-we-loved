@@ -1,5 +1,4 @@
-<div>
-<!-- <div class="page-wrapper"> -->
+<div class="page-wrapper">
   <% @authors.each do |author| %>
     <div class="author-wrapper"><%= link_to author.name, author_path(author) %></div>
   <% end %>

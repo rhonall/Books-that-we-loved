@@ -1,6 +1,10 @@
-<h3>Please choose your favourite genres: </h3>
-
-<%= form_with url: "/fav_genres/#{current_user.id}", method: :patch do |f| %>
-  <%= f.collection_check_boxes :genres_id, @genres, :id, :name, { checked: @fav_genres.map { |g| g.genre.id}} %>
-  <%= f.submit %>
-<% end %>
+<div class="wrapper edit_fav_genres">
+  <div class="fav_genres_wrapper">
+    <h3 class="sub-title">Please choose your favourite genres: </h3>
+    
+    <%= form_with url: "/fav_genres/#{current_user.id}", method: :patch do |f| %>
+      <%= f.collection_check_boxes :genres_id, @genres, :id, :name, { checked: @fav_genres.map { |g| g.genre.id}} %>
+      <div class="submit"><%= f.submit "Confirm", class: 'btn btn-dark' %></div>
+    <% end %>
+  </div>
+</div>

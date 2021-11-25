@@ -1,20 +1,26 @@
-<h1><%= @owned_book.book.title %></h1>
-<% if @owned_book.image.attached? %>
+<div class="wrapper owned-book">
+  <div class="book-cover">
+    <% if @owned_book.image.attached? %>
     <%= cl_image_tag @owned_book.image.key,  cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
-  <% else %>
+    <% else %>
     <%= image_tag("no_image.png") %>
-<% end %>
-<h3>Owned by: <%= @owned_book.user.username %></h3>
-<h3>Condition: <%= @owned_book.condition %></h3>
-<h3>Format: <%= @owned_book.format %></h3>
-<h3>Owner Note: <%= @owned_book.owner_note %></h3>
-<% if current_user && (current_user.has_role? :admin) %>
-  <h3>Status: <%= @owned_book.status %></h3>
-<% end %>
-<% if @owned_book.user == current_user || (current_user && (current_user.has_role? :admin)) %>
-  <button><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
-  <button><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete , data: { confirm: "Are you sure?" } %></button>
-<% end %>
-<% if @owned_book.user != current_user %>
-  <%= link_to "I want this book!", new_request_path + "?requestee_book_id=#{@owned_book.id}" %>
-<% end %>
+    <% end %>
+  </div>
+  <h1 class="book-title title"><%= @owned_book.book.title %></h1>
+  <h3 class="sub-title">Owned by: <%= @owned_book.user.username %></h3>
+  <h3 class="sub-title">Condition: <%= @owned_book.condition %></h3>
+  <h3 class="sub-title">Format: <%= @owned_book.format %></h3>
+  <h3 class="sub-title">Owner Note: <%= @owned_book.owner_note %></h3>
+  <% if current_user && (current_user.has_role? :admin) %>
+    <h3 class="sub-title">Status: <%= @owned_book.status %></h3>
+  <% end %>
+  <% if @owned_book.user == current_user || (current_user && (current_user.has_role? :admin)) %>
+    <button class="btn btn-dark"><%= link_to "Edit", edit_owned_book_path(@owned_book.id)%></button>
+    <button class="btn btn-dark"><%= link_to "Delete", owned_book_path(@owned_book.id), method: :delete , data: { confirm: "Are you sure?" } %></button>
+  <% end %>
+  <% if current_user && (@owned_book.user != current_user) && (current_user.requests_made.where(requestee_book: @owned_book.id).length != 0) %>
+    <button class="btn btn-grey">You have requested this book</button>
+  <% elsif @owned_book.user != current_user%>
+    <button class="btn btn-dark"><%= link_to "I want this book!", new_request_path + "?requestee_book_id=#{@owned_book.id}" %></button>
+  <% end %>
+</div>
