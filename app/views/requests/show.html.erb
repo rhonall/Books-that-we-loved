@@ -16,8 +16,8 @@
     <div class="requests-btns">
       <% if @request.status == 'pending' %>
         <% if @request.requester_id == current_user.id %>
-        <button class="btn btn-dark"><%= link_to "Edit this request", edit_request_path(@request.id)%></button>
-        <button class="btn btn-dark"><%= link_to "Cancel this request", request_path(@request.id), method: :delete, data: { confirm: "Are you sure?"} %></button>
+        <button class="btn btn-dark"><%= link_to "Edit", edit_request_path(@request.id)%></button>
+        <button class="btn btn-dark"><%= link_to "Cancel", request_path(@request.id), method: :delete, data: { confirm: "Are you sure?"} %></button>
         <% else %>
         <button class="btn btn-dark"><%= link_to "Accept request", accept_request_path(@request.id)%></button>
         <button class="btn btn-dark"><%= link_to "Decline request", decline_request_path(@request.id)%></button>
