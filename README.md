@@ -4,7 +4,7 @@ Books that we loved is a platform that user can swap their books with others wit
 
 Books that we loved targets anyone who loves books!!! Especially those who want to swap their books with some new books to read.
 
-![Deployed website through heroku](https://books-that-we-loved.herokuapp.com/)
+[Deployed website through heroku](https://books-that-we-loved.herokuapp.com/)
 
 ## Main Features
 
@@ -29,7 +29,7 @@ I am using heroku for deploying and Cloudinary for hosting uploaded images.
 
 ## Installation
 
-** This app is developed in Ruby and requires Ruby installed to run. Please check out ![here](https://www.ruby-lang.org/en/downloads/) to find instructions to download and install Ruby for your operating system.
+** This app is developed in Ruby and requires Ruby installed to run. Please check out [here](https://www.ruby-lang.org/en/downloads/) to find instructions to download and install Ruby for your operating system.
 
 1. Please ensure Ruby is installed or is using the correct version (Ruby 3.0.2).
 
