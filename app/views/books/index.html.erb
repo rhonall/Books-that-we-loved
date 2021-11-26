@@ -1,10 +1,9 @@
-
-  <div class="page-wrapper">
-    <% @books.each do |book| %>
-      <div class="book-wrapper">
-        <div class="book-wrapper-image"><img src="<%= book.cover %>" alt="Book cover of <%= "#{book.title}" %>"></div>
-        <div class="book-wrapper-body"><%= link_to book.title, book_path(book.id) %></div>
-      </div>
-    <% end %>
-  </div>
+<div class="page-wrapper">
+  <% @books.each do |book| %>
+    <div class="book-wrapper">
+      <div class="book-wrapper-image"><img src="<%= book.cover %>" alt="Book cover of <%= "#{book.title}" %>"></div>
+      <div class="book-wrapper-body"><%= link_to book.title, book_path(book.id) %></div>
+    </div>
+  <% end %>
+</div>
 

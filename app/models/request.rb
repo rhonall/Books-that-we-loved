@@ -7,7 +7,6 @@ class Request < ApplicationRecord
   scope :status_active, -> { where(status: 0) }
   scope :status_completed, -> { where.not(status: 0) }
 
-
   enum status: {
     pending: 0,
     cofirmed: 1,

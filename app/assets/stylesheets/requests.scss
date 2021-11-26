@@ -2,9 +2,94 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+// Requests Index
+.requests {
+  text-align: center;
+  .current-requests {
+    .title {
+      margin-bottom: 1em;
+    }
+    .sub-title {
+      margin-top: 1em;
+    }
+  }
+  .past-requests {
+    margin-top: 3em;
+  }
+}
 
+// Request Show Page
+.request-show {
+  display: flex;
+  justify-content: center;
+  .request-title {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .requests-btns {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
 
-// .requests-page-wrapper {
-//   display: flex;
-//   justify-content: space-around;
-// }
+// Request Form 
+.request-form {
+  display: flex;
+  justify-content: center;
+  .request-title {
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+  .sub-title {
+    margin-top: 1rem;
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+  }
+}
+
+// Confirmed & Declined Page
+.action {
+  text-align: center;
+  .btn {
+    margin-top: 2em;
+  }
+}
+
+/*----------------*/
+/* Tablet version */
+/*----------------*/
+@media only screen and (min-width: 640px){
+  .request-side {
+    display: flex;
+    justify-content: space-evenly;
+    
+    .request-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .btn {
+        display: block;
+        width: 50%;
+        margin-top: 1em;
+      }
+    }
+  }
+}
+
+/* --------------- */
+/* Desktop version */
+/* --------------- */
+@media only screen and (min-width: 900px){
+  .requests {
+    display: flex;
+    justify-content: space-around;
+    .past-requests {
+      margin-top: 0;
+    }
+  }
+}
+

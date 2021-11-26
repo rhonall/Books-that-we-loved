@@ -13,13 +13,18 @@ class BooksController < ApplicationController
   end
 
   def new
-    book = Book.find_by(book_api_id: params[:book_api_id])
-    if !book.nil?
-      book.update(status: 0)
-      redirect_to book_path(book)
-      flash[:notice] = "Please click swap to add your book to this platform."
-    else
-      @book = Book.new
+    begin
+      book = Book.find_by(book_api_id: params[:book_api_id])
+      if !book.nil?
+        book.update(status: 0)
+        redirect_to book_path(book)
+        flash[:notice] = "Please click swap to add your book to this platform."
+      else
+        @book = Book.new
+      end
+    rescue
+      flash.now[:error] = "Our apologise, something went wrong, please try again!"
+      render 'search'
     end
   end
 

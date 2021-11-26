@@ -5,11 +5,11 @@
       <% @books.each do |book| %>
       <div class="found_book_wrapper">
       <% if book.image_link.nil? %>
-          <div><%= image_tag("no_cover.png") %></div>
+          <div><%= image_tag("no_image.png") %></div>
         <% else %>
           <div><img src="<%= book.image_link %>" alt="Book cover of <%= "#{book.title}" %>"></div>
         <% end %>
-        <div><%= link_to book.title, new_book_path + "?title=#{book.title}&authors=#{book.authors_array.map { |a| a }.join(", ")}&book_api_id=#{book.id}&cover=#{ERB::Util.url_encode(book.image_link)}&description=#{book.description}" %></div>
+        <div><%= link_to book.title, new_book_path + "?title=#{ERB::Util.url_encode(book.title)}&authors=#{book.authors_array.map { |a| a }.join(", ")}&book_api_id=#{book.id}&cover=#{ERB::Util.url_encode(book.image_link)}&description=#{ERB::Util.url_encode(book.description)}" %></div>
       </div>
       <% end %>
   </div>
@@ -17,3 +17,4 @@
   <p class="return"><%= link_to "<< Can't see your book here? Go back and search again.", :back %></p>
   <p class="tips">Tips: Try a full book title 😊</p>
 </div>
+

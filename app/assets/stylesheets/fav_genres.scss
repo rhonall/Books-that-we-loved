@@ -1,3 +1,30 @@
 // Place all the styles related to the Fav_genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Fav Genres Page
+.fav_genres {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  .btn {
+    margin-top: 0.7em;
+  }
+}
+
+// Edit Fav Genres Page
+.edit_fav_genres {
+  display: flex;
+  justify-content: center;
+  .fav_genres_wrapper {
+    width: 80%;
+    .sub-title {
+      margin-bottom: 0.5em;
+    }
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.7em;
+  }
+}

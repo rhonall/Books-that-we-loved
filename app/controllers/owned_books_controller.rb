@@ -26,7 +26,12 @@ class OwnedBooksController < ApplicationController
   end
 
   def edit
-    @title = @owned_book.book.title
+    if @owned_book.user == current_user
+      @title = @owned_book.book.title
+    else
+      redirect_to owned_book_path(@owned_book)
+      flash[:alert] = "You are not authorized to perform this action."
+    end
   end
 
   def update

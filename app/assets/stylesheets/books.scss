@@ -8,7 +8,7 @@
   --clr-primary-dkgreen: hsl(88, 38%, 15%);
   --clr-primary-ltorange: hsl(28, 67%, 44%);
   --clr-primary-nav-ltgreen: hsla(71, 20%, 68%, 0.4);
-  --clr-primary--ltgreen: hsla(71, 9%, 46%, 0.5);
+  --clr-primary--ltgreen: hsla(71, 9%, 46%, 0.2);
   --clr-alert-dkred: hsl(0, 100%, 26%);
   --clr-notice-ltgreen: hsl(74, 31%, 20%);
   --clr-hover-ltgreen: hsl(89, 49%, 23%);
@@ -27,24 +27,12 @@
     padding: 0;
 }
 
-body {
-  font-family: 'Lato', sans-serif;
-  color: var(--clr-primary-dkgreen);
-  line-height: 1.5;
-  display: flex;
-  justify-content: center;
-  .container {
-    width: 100%;
-    max-width: 1200px;
-  }
-}
-
 ul {
   list-style: none;
 }
 
 p {
-  margin: 5px 0;
+  margin: 0;
 }
 
 a {
@@ -70,11 +58,10 @@ a:focus {
 }
 
 .wrapper {
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 // Buttons
-
 .btn {
   cursor: pointer;
   display: inline-block;
@@ -107,6 +94,7 @@ a:focus {
 .btn-dark:hover,
 .btn-dark:focus {
   background-color: rgba(0, 0, 0, 0.06);
+  color: var(--clr-primary-dkgreen);
   a {
     color: var(--clr-primary-dkgreen);
   }
@@ -129,8 +117,23 @@ a:focus {
   color: var(--clr-notice-ltgreen);
 }
 
-// Nav Bar
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--clr-primary-dkgreen);
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  .container {
+    width: 100%;
+    max-width: 1440px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
 
+// Nav Bar
 .navbar {
   width: 100%;
   height: auto;
@@ -235,6 +238,27 @@ a:focus {
   overflow: hidden;
 }
 
+// Hero-pic
+.hero-pic {
+  height: calc(100vh - 83.2px);
+  width: 100%;
+  background-image: url(hero-pic.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .hero-pic-text {
+    color: white;
+    text-align: center;
+    font-size: clamp(1.85rem, 2.5vw, 2rem);
+    font-family: 'Cookie', cursive;
+    font-style: italic;
+    letter-spacing: 3px;
+    background-color: rgba(131, 131, 131, 0.5);
+    padding: 0.5em 1.8em;
+  }
+}
+
 // Top Bar
 .top-bar {
   position: relative;
@@ -263,7 +287,6 @@ a:focus {
 }
 
 // Index Books Page
-
 .page-wrapper {
   padding: 0 1rem;
   display: grid;
@@ -295,36 +318,42 @@ a:focus {
 }
 
 // Show Book Page
-.book-page-wrapper {
-  padding: 0 1rem;
-  .book-side {
-    margin-bottom: 1rem;
-    .book-cover {
-      display: flex;
-      justify-content: center;
+.show-book {
+  display: flex;
+  justify-content: center;
+  .book-page-wrapper {
+    padding: 0 1rem;
+    width: 80%;
+    .book-side {
       margin-bottom: 1rem;
-      img {
-        max-width: 100%;
-        height: auto;
+      .book-cover {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+      .book-genres {
+        margin: 1.5rem 0;
+      }
+      .book-description {
+        font-size: clamp(0.8rem, 2vw, 1rem);
       }
     }
-    .book-genres {
-      margin: 1.5rem 0;
+    .request-top .btn{
+      margin: 10px 0 20px;
     }
-    .book-description {
-      font-size: clamp(0.8rem, 2vw, 1rem);
-    }
-  }
-  .request-top .btn{
-    margin: 10px 0 20px;
-  }
-  .request-bottom ul {
-    list-style: disc;
-    li {
-      margin-left: 20px;
+    .request-bottom ul {
+      list-style: disc;
+      li {
+        margin-left: 20px;
+      }
     }
   }
 }
+
 // Add Book
 .find_book {
   display: flex;
@@ -346,6 +375,7 @@ a:focus {
     margin-bottom: 1em;
   }
 }
+
 .found_book_wrapper {
   // border: 1px solid black;
   display: flex;
@@ -389,155 +419,42 @@ a:focus {
   margin-top: 2rem;
 }
 
-// Add Owned Book
-.owned_books_add {
+// Edit Book
+.edit-book {
   display: flex;
   justify-content: center;
-  .title {
-    margin-bottom: 1em;
-  }
-  div + div {
-    margin-top: 0.6em;
-  }
-  .submit {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-  }
-}
-
-// Show Owned Book Page
-.owned-book {
-  text-align: center;
-  .book-cover {
-    display: flex;
-    justify-content: center;
-    img {
-      max-width: 150px;
-      height: auto;
-    }
-  }
-  .book-title, 
-  .sub-title {
-    margin: 0.7em 0;
-  }
-  .btn-grey {
-    cursor: default;
-    background-color: rgb(173, 173, 173);
-  }
-}
-
-// Authors Show Page
-.title-authors, 
-.title-genres {
-  margin-bottom: 1em;
-}
-
-// User Index Page
-.users {
-  text-align: center;
-  .title {
-    margin-bottom: 1em;
-  }
-}
-
-// Fav Genres Page
-.fav_genres {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  .btn {
-    margin-top: 0.7em;
-  }
-}
-
-// Edit Fav Genres Page
-.edit_fav_genres {
-  display: flex;
-  justify-content: center;
-  .fav_genres_wrapper {
+  .edit-book-form {
     width: 80%;
     .sub-title {
-      margin-bottom: 0.5em;
+      margin: 1em 0;
     }
-  }
-  .submit {
-    display: flex;
-    justify-content: center;
-    margin-top: 0.7em;
-  }
-}
-
-// Owned Books Index
-.owned-books {
-  text-align: center;
-  .title {
-    margin-bottom: 1rem;
-  }
-}
-
-// Requests Index
-.requests {
-  text-align: center;
-  .current-requests {
-    .title {
-      margin-bottom: 1em;
-    }
-    .sub-title {
+    .genres {
       margin-top: 1em;
     }
-  }
-  .past-requests {
-    margin-top: 3em;
+    .btn {
+      margin: 1em 0;
+    }
   }
 }
 
-// Request Show Page
-.request-show {
+footer {
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+  margin-top: 3rem;
+  background-color: var(--clr-primary-nav-ltgreen);
   display: flex;
+  align-items: center;
   justify-content: center;
-  .request-title {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  .requests-btns {
-    margin-top: 2em;
-    display: flex;
-    justify-content: space-evenly;
-  }
-}
-
-// Request Form 
-.request-form {
-  display: flex;
-  justify-content: center;
-  .request-title {
-    text-align: center;
-    margin-bottom: 1.8rem;
-  }
-  .sub-title {
-    margin-top: 1rem;
-  }
-  .submit {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-  }
-}
-
-// Confirmed & Declined Page
-.action {
-  text-align: center;
-  .btn {
-    margin-top: 2em;
+  .footer-text {
+    margin-left: 2rem;
   }
 }
 
 
-
-// /*------------------------------*/
-// /* Tablet version */
-// /*------------------------------*/
+/*----------------*/
+/* Tablet version */
+/*----------------*/
 
 @media only screen and (min-width: 640px){
   .navbar-nav {
@@ -561,21 +478,6 @@ a:focus {
     display: none;
   }
 
-  .request-side {
-    display: flex;
-    justify-content: space-evenly;
-    
-    .request-top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .btn {
-        display: block;
-        width: 50%;
-        margin-top: 1em;
-      }
-    }
-  }
   .found_book_wrapper {
     height: 280px;
   }
@@ -584,9 +486,9 @@ a:focus {
   }
 }
 
-// /* --------------------------------------- */
-// /* Desktop version */
-// /* --------------------------------------- */
+/* --------------- */
+/* Desktop version */
+/* --------------- */
 
 @media only screen and (min-width: 900px){
   .book-page-wrapper {
@@ -606,27 +508,11 @@ a:focus {
     }
     .request-side {
       flex-direction: column;
-      .request-top {
-        margin-top: -9rem;
-      }
+      justify-content: normal;
       .request-bottom {
-        margin-top: -9rem;
+        margin-top: 1rem;
       }
-    }
-  }
-
-  .requests {
-    display: flex;
-    justify-content: space-around;
-    .past-requests {
-      margin-top: 0;
     }
   }
 }
-
-
-
-
-
-
 

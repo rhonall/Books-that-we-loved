@@ -1,3 +1,58 @@
 // Place all the styles related to the OwnedBooks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Owned Books Index
+.owned-books {
+  text-align: center;
+  .title {
+    margin-bottom: 1rem;
+  }
+}
+
+// Add & Edit Owned Book
+.owned_books_add {
+  display: flex;
+  justify-content: center;
+  .owned_books_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    text-align: center;
+  }
+  .sub-title {
+    margin: 1em 0;
+    text-align: center;
+  }
+  div + div {
+    margin-top: 0.6em;
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+  }
+}
+
+// Show Owned Book Page
+.owned-book {
+  text-align: center;
+  .book-cover {
+    display: flex;
+    justify-content: center;
+    img {
+      max-width: 150px;
+      height: auto;
+    }
+  }
+  .book-title, 
+  .sub-title {
+    margin: 0.7em 0;
+  }
+  .btn-grey {
+    cursor: default;
+    background-color: rgb(173, 173, 173);
+  }
+}

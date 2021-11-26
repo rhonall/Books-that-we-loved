@@ -30,7 +30,12 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    @book = @request.requestee_book
+    if @request.requester == current_user
+      @book = @request.requestee_book
+    else
+      redirect_to request_path(@request)
+      flash[:alert] = "You are not authorized to perform this action."
+    end
   end
 
   def update

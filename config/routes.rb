@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   get '/', to: 'books#index'
   resources :books
-  resources :authors#, except/only
-  resources :genres
+  resources :authors, only: [:index, :show, :destroy]
+  resources :genres, only: [:index, :show]
   resources :owned_books
   resources :requests
-  resources :fav_genres
+  resources :fav_genres, except: [:destroy]
   get '/users', to: 'users#index'
   get '/admins', to: 'admins#index'
   get '/find', to: 'books#find'
@@ -16,4 +16,3 @@ Rails.application.routes.draw do
   get '/request/:id/accept', to: 'requests#accept', as: 'accept_request'
   get '/request/:id/decline', to: 'requests#decline', as: 'decline_request'
 end
-
