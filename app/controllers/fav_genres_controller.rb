@@ -26,15 +26,24 @@ class FavGenresController < ApplicationController
   end
   
   def update
-    @genres = params[:genres_id]
-    current_user.fav_genres.destroy_all
-    @genres.each do |genre|
-      if !genre.empty?
-        current_user.fav_genres.create(genre: Genre.find(genre))
+      @genres = params[:genres_id]
+      current_user.fav_genres.destroy_all
+      state = true
+      @genres.each do |genre|
+        if !genre.empty?
+          current_user.fav_genres.create(genre: Genre.find(genre))
+          state = true
+        else
+          state = false
+        end
       end
-    end
-    redirect_to users_path
-    flash[:notice] = "Thank you! You favourite genres have been updated!"
+      if state == true
+        redirect_to users_path
+        flash[:notice] = "Thank you! You favourite genres have been updated!"
+      else 
+        redirect_to edit_fav_genre_path
+        flash[:alert] = "Please select at least one genre!"
+      end
   end
 
   private
@@ -45,6 +54,6 @@ class FavGenresController < ApplicationController
 
   def get_fav_genres
     @fav_genres = current_user.fav_genres.select(:genre_id)
-  end  
+  end 
 
 end

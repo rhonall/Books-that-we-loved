@@ -102,14 +102,16 @@ a:focus {
 
 // Notice & Alert
 .alert, 
-.notice {
+.notice, 
+#errors p {
   margin: 0;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   text-align: center;
   padding: 1em 0;
 }
 
-.alert {
+.alert,
+#errors p {
   color: var(--clr-alert-dkred);
 }
 
