@@ -29,7 +29,7 @@ I am using heroku for deploying and Cloudinary for hosting uploaded images.
 
 ## Installation
 
-** This game is developed in Ruby and requires Ruby installed to run. Please check out ![here](https://www.ruby-lang.org/en/downloads/) to find instructions to download and install Ruby for your operating system.
+** This app is developed in Ruby and requires Ruby installed to run. Please check out ![here](https://www.ruby-lang.org/en/downloads/) to find instructions to download and install Ruby for your operating system.
 
 1. Please ensure Ruby is installed or is using the correct version (Ruby 3.0.2).
 
