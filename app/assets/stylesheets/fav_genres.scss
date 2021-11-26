@@ -12,6 +12,21 @@
   }
 }
 
+// Add Fav Genres Page
+.new_fav_genres {
+  display: flex;
+  justify-content: center;
+  .new_fav_genres_form {
+    width: 80%;
+    .sub-title {
+      margin-bottom: 1em;
+    }
+    .btn {
+      margin-top: 1em;
+    }
+  }
+}
+
 // Edit Fav Genres Page
 .edit_fav_genres {
   display: flex;
