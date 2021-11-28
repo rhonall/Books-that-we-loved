@@ -27,7 +27,7 @@ Books that we loved targets anyone who loves books!!! Especially those who want 
 
 I am using heroku for deploying and Cloudinary for hosting uploaded images. 
 
-## Installation
+## Usage
 
 ** This app is developed in Ruby and requires Ruby installed to run. Please check out [here](https://www.ruby-lang.org/en/downloads/) to find instructions to download and install Ruby for your operating system.
 
@@ -56,7 +56,17 @@ bundle install
 rails db:setup
 ```
 
-1. Finally you can run the rails server with `rails s`, then you should be able to visit the website by access http://localhost:3000 
+## Dependencies
+
+- GoogleBooks ~> 0.0.9
+- Cloudinary ~> 1.21
+- ActiveStorage Cloudinary Service ~> 0.2.3
+- Devise ~> 4.8
+- Rolify ~> 6.0
+- Dotenv Rails  ~> 2.7
+- Pundit ~> 2.1
+
+
 
 
 
